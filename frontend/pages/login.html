@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login AquaCar</title>
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Iniciar sesión</h1>
+        <p>Accede a tu cuenta en AquaCar</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" required />
+          </div>
+
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" required />
+          </div>
+
+          <button type="submit">Ingresar</button>
+        </form>
+
+        <div class="message" id="mensaje"></div>
+
+        <div class="link-text">
+          ¿No tienes cuenta? <a href="./registro.html">Regístrate aquí</a>
+        </div>
+
+        <div class="link-text">
+          <a href="../index.html">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+    <script src="../js/config.js"></script>
+    <script src="../js/login.js"></script>
+  </body>
+</html>

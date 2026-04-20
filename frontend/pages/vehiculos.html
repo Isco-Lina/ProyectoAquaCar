@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis vehículos - AquaCar</title>
+    <link rel="stylesheet" href="../css/vehiculos.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <section class="hero">
+        <h1>Mis vehículos</h1>
+        <p>
+          Registra los vehículos asociados a tu cuenta para poder reservar
+          servicios en AquaCar.
+        </p>
+
+        <div class="usuario-box">
+          <span>Sesión iniciada como:</span>
+          <strong id="usuario_logueado"></strong>
+        </div>
+
+        <div class="acciones-superiores">
+          <a href="./panel.html" class="btn btn-secundario">Volver al panel</a>
+          <button id="btnCerrarSesion" class="btn btn-cerrar">
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+
+      <section class="formulario-card">
+        <h2>Registrar vehículo</h2>
+
+        <form id="vehiculoForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="marca">Marca</label>
+              <input type="text" id="marca" required />
+            </div>
+
+            <div class="form-group">
+              <label for="modelo">Modelo</label>
+              <input type="text" id="modelo" required />
+            </div>
+
+            <div class="form-group">
+              <label for="patente">Patente</label>
+              <input type="text" id="patente" required />
+            </div>
+
+            <div class="form-group">
+              <label for="tipo_vehiculo">Tipo de vehículo</label>
+              <input type="text" id="tipo_vehiculo" required />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="color">Color</label>
+              <input type="text" id="color" required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-principal">Guardar vehículo</button>
+        </form>
+
+        <div id="mensaje" class="message"></div>
+      </section>
+
+      <section class="listado-card">
+        <h2>Mis vehículos registrados</h2>
+        <div id="listaVehiculos" class="lista-grid">
+          <p class="sin-datos">Cargando vehículos...</p>
+        </div>
+      </section>
+    </div>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/vehiculos.js"></script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrador - AquaCar</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <section class="hero">
+        <h1>Panel Administrador</h1>
+        <p>
+          Revisa el resumen general, administra reservas y accede a los módulos
+          de gestión de AquaCar.
+        </p>
+
+        <div class="usuario-box">
+          <span>Sesión iniciada como:</span>
+          <strong id="usuario_logueado"></strong>
+        </div>
+
+        <div class="acciones-superiores">
+          <button
+            id="btnClientesVehiculos"
+            class="btn btn-secundario"
+            type="button"
+          >
+            Clientes y vehículos
+          </button>
+          <a href="./servicios-admin.html" class="btn btn-secundario">
+            Gestionar servicios
+          </a>
+          <button id="btnCerrarSesion" class="btn btn-cerrar">
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+
+      <section class="resumen-card">
+        <h2>Resumen general</h2>
+        <div class="resumen-grid" id="resumenGrid">
+          <div class="stat-box">
+            <span>Total reservas</span>
+            <strong id="totalReservas">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Pendientes</span>
+            <strong id="totalPendientes">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Confirmadas</span>
+            <strong id="totalConfirmadas">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Completadas</span>
+            <strong id="totalCompletadas">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>Canceladas</span>
+            <strong id="totalCanceladas">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="listado-card">
+        <h2>Reservas registradas</h2>
+
+        <div class="filtros-admin">
+          <div class="campo-filtro">
+            <label for="inputBuscar">Buscar</label>
+            <input
+              type="text"
+              id="inputBuscar"
+              placeholder="Buscar por cliente, correo, patente, vehículo o servicio"
+            />
+          </div>
+
+          <div class="campo-filtro">
+            <label for="filtroEstado">Estado</label>
+            <select id="filtroEstado">
+              <option value="">Todos</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Confirmada">Confirmada</option>
+              <option value="Completada">Completada</option>
+              <option value="Cancelada">Cancelada</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="mensaje" class="message"></div>
+        <div id="listaReservas" class="lista-grid"></div>
+      </section>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+  </body>
+</html>

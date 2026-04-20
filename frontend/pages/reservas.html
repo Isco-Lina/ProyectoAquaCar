@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservas - AquaCar</title>
+    <link rel="stylesheet" href="../css/reservas.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <section class="hero">
+        <h1>Ingresa tu reserva</h1>
+        <p>
+          Selecciona tu vehículo, el servicio que deseas y agenda tu atención en
+          AquaCar.
+        </p>
+
+        <div class="usuario-box">
+          <span>Sesión iniciada como:</span>
+          <strong id="usuario_logueado"></strong>
+        </div>
+
+        <div class="acciones-superiores">
+          <a href="./panel.html" class="btn btn-secundario">Volver al panel</a>
+          <button
+            id="btnVerMisReservas"
+            class="btn btn-secundario"
+            type="button"
+          >
+            Ver mis reservas
+          </button>
+          <button id="btnCerrarSesion" class="btn btn-cerrar">
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+
+      <section class="formulario-card">
+        <h2>Nueva reserva</h2>
+
+        <form id="reservaForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="id_vehiculo">Vehículo</label>
+              <select id="id_vehiculo" required>
+                <option value="">Seleccione un vehículo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="id_servicio">Servicio</label>
+              <select id="id_servicio" required>
+                <option value="">Seleccione un servicio</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fecha_reserva">Fecha reserva</label>
+              <input type="date" id="fecha_reserva" required />
+            </div>
+
+            <div class="form-group">
+              <label for="hora_reserva">Hora reserva</label>
+              <input type="time" id="hora_reserva" required />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="observaciones">Observaciones</label>
+              <textarea
+                id="observaciones"
+                rows="4"
+                placeholder="Escribe aquí algún detalle adicional"
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-principal">Registrar reserva</button>
+        </form>
+
+        <div id="mensaje" class="message"></div>
+      </section>
+    </div>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/reservas.js"></script>
+  </body>
+</html>

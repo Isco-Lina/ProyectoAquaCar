@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes y Vehículos - AquaCar</title>
+    <link rel="stylesheet" href="../css/clientes-vehiculos.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <section class="hero">
+        <h1>Clientes y Vehículos</h1>
+        <p>
+          Revisa los clientes registrados en AquaCar y el detalle de los
+          vehículos asociados a cada cuenta.
+        </p>
+
+        <div class="usuario-box">
+          <span>Sesión iniciada como:</span>
+          <strong id="usuario_logueado"></strong>
+        </div>
+
+        <div class="acciones-superiores">
+          <a href="./admin.html" class="btn btn-secundario"
+            >Volver al panel administrador</a
+          >
+          <a href="./servicios-admin.html" class="btn btn-secundario"
+            >Gestionar servicios</a
+          >
+          <button id="btnCerrarSesion" class="btn btn-cerrar">
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+
+      <section class="listado-card">
+        <div class="busqueda-box">
+          <label for="inputBuscar" class="label-busqueda"
+            >Buscar clientes o vehículos</label
+          >
+          <input
+            type="text"
+            id="inputBuscar"
+            placeholder="Buscar por nombre, apellido, correo, patente, marca o modelo"
+          />
+        </div>
+
+        <h2>Clientes registrados</h2>
+        <div id="listaClientes" class="lista-grid">
+          <p class="sin-datos">Cargando clientes...</p>
+        </div>
+      </section>
+
+      <section class="listado-card">
+        <h2>Vehículos registrados</h2>
+        <div id="listaVehiculos" class="lista-grid">
+          <p class="sin-datos">Cargando vehículos...</p>
+        </div>
+      </section>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/clientes-vehiculos.js"></script>
+  </body>
+</html>

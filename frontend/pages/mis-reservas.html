@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Reservas - AquaCar</title>
+    <link rel="stylesheet" href="../css/mis-reservas.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <section class="hero">
+        <h1>Mis Reservas</h1>
+        <p>
+          Revisa el estado de tus reservas, horarios programados y los detalles
+          de cada atención en AquaCar.
+        </p>
+
+        <div class="usuario-box">
+          <span>Sesión iniciada como:</span>
+          <strong id="usuario_logueado"></strong>
+        </div>
+
+        <div class="acciones-superiores">
+          <a href="./panel.html" class="btn btn-secundario">Volver al panel</a>
+          <a href="./reservas.html" class="btn btn-secundario">Reservar hora</a>
+          <button id="btnCerrarSesion" class="btn btn-cerrar">
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+
+      <section class="listado-card">
+        <h2>Listado de reservas</h2>
+        <div id="mensaje" class="message"></div>
+        <div id="listaReservas" class="lista-grid">
+          <p class="sin-datos">Cargando reservas...</p>
+        </div>
+      </section>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/mis-reservas.js"></script>
+  </body>
+</html>
