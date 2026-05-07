@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../db');
+const db = require("../db");
 
-router.post('/reservas', (req, res) => {
+router.post("/reservas", (req, res) => {
   const {
     id_usuario,
     id_vehiculo,
@@ -10,12 +10,19 @@ router.post('/reservas', (req, res) => {
     id_estado,
     fecha_reserva,
     hora_reserva,
-    observaciones
+    observaciones,
   } = req.body;
 
-  if (!id_usuario || !id_vehiculo || !id_servicio || !id_estado || !fecha_reserva || !hora_reserva) {
+  if (
+    !id_usuario ||
+    !id_vehiculo ||
+    !id_servicio ||
+    !id_estado ||
+    !fecha_reserva ||
+    !hora_reserva
+  ) {
     return res.status(400).json({
-      mensaje: 'Todos los campos obligatorios deben ser completados'
+      mensaje: "Todos los campos obligatorios deben ser completados",
     });
   }
 
@@ -30,14 +37,14 @@ router.post('/reservas', (req, res) => {
   db.query(sqlValidacion, [fecha_reserva, hora_reserva], (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al validar disponibilidad',
-        error: error.message
+        mensaje: "Error al validar disponibilidad",
+        error: error.message,
       });
     }
 
     if (results.length > 0) {
       return res.status(400).json({
-        mensaje: 'El horario seleccionado no está disponible'
+        mensaje: "El horario seleccionado no está disponible",
       });
     }
 
@@ -65,26 +72,26 @@ router.post('/reservas', (req, res) => {
         id_estado,
         fecha_reserva,
         hora_reserva,
-        observaciones || null
+        observaciones || null,
       ],
       (error, results) => {
         if (error) {
           return res.status(500).json({
-            mensaje: 'Error al registrar reserva',
-            error: error.message
+            mensaje: "Error al registrar reserva",
+            error: error.message,
           });
         }
 
         res.status(201).json({
-          mensaje: 'Reserva registrada correctamente',
-          id_reserva: results.insertId
+          mensaje: "Reserva registrada correctamente",
+          id_reserva: results.insertId,
         });
-      }
+      },
     );
   });
 });
 
-router.get('/reservas', (req, res) => {
+router.get("/reservas", (req, res) => {
   const sql = `
     SELECT 
       r.id_reserva,
@@ -118,8 +125,8 @@ router.get('/reservas', (req, res) => {
   db.query(sql, (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al obtener reservas',
-        error: error.message
+        mensaje: "Error al obtener reservas",
+        error: error.message,
       });
     }
 
@@ -127,7 +134,7 @@ router.get('/reservas', (req, res) => {
   });
 });
 
-router.get('/reservas/usuario/:id_usuario', (req, res) => {
+router.get("/reservas/usuario/:id_usuario", (req, res) => {
   const { id_usuario } = req.params;
 
   const sql = `
@@ -153,8 +160,8 @@ router.get('/reservas/usuario/:id_usuario', (req, res) => {
   db.query(sql, [id_usuario], (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al obtener reservas del usuario',
-        error: error.message
+        mensaje: "Error al obtener reservas del usuario",
+        error: error.message,
       });
     }
 
@@ -162,7 +169,7 @@ router.get('/reservas/usuario/:id_usuario', (req, res) => {
   });
 });
 
-router.get('/reservas/:id', (req, res) => {
+router.get("/reservas/:id", (req, res) => {
   const { id } = req.params;
 
   const sql = `
@@ -190,14 +197,14 @@ router.get('/reservas/:id', (req, res) => {
   db.query(sql, [id], (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al obtener la reserva',
-        error: error.message
+        mensaje: "Error al obtener la reserva",
+        error: error.message,
       });
     }
 
     if (results.length === 0) {
       return res.status(404).json({
-        mensaje: 'Reserva no encontrada'
+        mensaje: "Reserva no encontrada",
       });
     }
 
@@ -205,13 +212,13 @@ router.get('/reservas/:id', (req, res) => {
   });
 });
 
-router.put('/reservas/:id_reserva/estado', (req, res) => {
+router.put("/reservas/:id_reserva/estado", (req, res) => {
   const { id_reserva } = req.params;
   const { id_estado } = req.body;
 
   if (!id_estado) {
     return res.status(400).json({
-      mensaje: 'El id_estado es obligatorio'
+      mensaje: "El id_estado es obligatorio",
     });
   }
 
@@ -224,19 +231,19 @@ router.put('/reservas/:id_reserva/estado', (req, res) => {
   db.query(sql, [id_estado, id_reserva], (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al actualizar estado de la reserva',
-        error: error.message
+        mensaje: "Error al actualizar estado de la reserva",
+        error: error.message,
       });
     }
 
     if (results.affectedRows === 0) {
       return res.status(404).json({
-        mensaje: 'No se encontró la reserva'
+        mensaje: "No se encontró la reserva",
       });
     }
 
     res.json({
-      mensaje: 'Estado de reserva actualizado correctamente'
+      mensaje: "Estado de reserva actualizado correctamente",
     });
   });
 });
@@ -245,7 +252,7 @@ router.put("/reservas/:id/cancelar", (req, res) => {
   const { id } = req.params;
 
   const sql = `
-    UPDATE reserva
+    UPDATE RESERVA
     SET id_estado = 4
     WHERE id_reserva = ?
   `;
@@ -270,27 +277,27 @@ router.put("/reservas/:id/cancelar", (req, res) => {
   });
 });
 
-router.delete('/reservas/:id', (req, res) => {
+router.delete("/reservas/:id", (req, res) => {
   const { id } = req.params;
 
-  const sql = 'DELETE FROM RESERVA WHERE id_reserva = ?';
+  const sql = "DELETE FROM RESERVA WHERE id_reserva = ?";
 
   db.query(sql, [id], (error, results) => {
     if (error) {
       return res.status(500).json({
-        mensaje: 'Error al eliminar la reserva',
-        error: error.message
+        mensaje: "Error al eliminar la reserva",
+        error: error.message,
       });
     }
 
     if (results.affectedRows === 0) {
       return res.status(404).json({
-        mensaje: 'Reserva no encontrada'
+        mensaje: "Reserva no encontrada",
       });
     }
 
     res.json({
-      mensaje: 'Reserva eliminada correctamente'
+      mensaje: "Reserva eliminada correctamente",
     });
   });
 });
