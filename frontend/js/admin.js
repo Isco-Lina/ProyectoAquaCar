@@ -55,13 +55,14 @@ function obtenerClaseEstado(estado) {
 }
 
 function formatearFecha(fechaIso) {
-  const fecha = new Date(fechaIso);
+  if (!fechaIso) return "Sin fecha";
 
-  if (isNaN(fecha)) return fechaIso;
+  const fechaTexto = String(fechaIso).split("T")[0];
+  const partes = fechaTexto.split("-");
 
-  const dia = String(fecha.getDate()).padStart(2, "0");
-  const mes = String(fecha.getMonth() + 1).padStart(2, "0");
-  const anio = fecha.getFullYear();
+  if (partes.length !== 3) return fechaIso;
+
+  const [anio, mes, dia] = partes;
 
   return `${dia}-${mes}-${anio}`;
 }
