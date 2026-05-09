@@ -154,6 +154,35 @@ body {
   background-color: #c62828;
 }
 
+.estado-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.estado-pendiente {
+  background-color: #fbc02d;
+  color: #333;
+}
+
+.estado-confirmada {
+  background-color: #1976d2;
+  color: white;
+}
+
+.estado-completada {
+  background-color: #388e3c;
+  color: white;
+}
+
+.estado-cancelada {
+  background-color: #d32f2f;
+  color: white;
+}
+
 @media (max-width: 700px) {
   body {
     padding: 25px 15px;

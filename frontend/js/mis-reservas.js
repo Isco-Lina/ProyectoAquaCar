@@ -40,6 +40,21 @@ function mostrarMensaje(texto, esExito) {
   mensaje.textContent = texto;
 }
 
+function obtenerClaseEstado(estado) {
+  switch (estado) {
+    case "Pendiente":
+      return "estado-pendiente";
+    case "Confirmada":
+      return "estado-confirmada";
+    case "Completada":
+      return "estado-completada";
+    case "Cancelada":
+      return "estado-cancelada";
+    default:
+      return "";
+  }
+}
+
 async function cargarReservasUsuario() {
   try {
     const response = await fetch(
@@ -71,7 +86,7 @@ async function cargarReservasUsuario() {
         <p><strong>Patente:</strong> ${reserva.patente}</p>
         <p><strong>Fecha:</strong> ${formatearFecha(reserva.fecha_reserva)}</p>
         <p><strong>Hora:</strong> ${formatearHora(reserva.hora_reserva)}</p>
-        <p><strong>Estado:</strong> ${reserva.nombre_estado}</p>
+        <p><strong>Estado:</strong><span class="estado-badge ${obtenerClaseEstado(reserva.nombre_estado)}">${reserva.nombre_estado}</span></p>
         <p><strong>Observaciones:</strong> ${reserva.observaciones || "Sin observaciones"}</p>
         ${
           esCancelable(reserva)
