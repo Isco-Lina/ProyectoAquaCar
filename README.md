@@ -85,8 +85,6 @@ La comunicación entre frontend y backend se realiza mediante solicitudes HTTP y
 /database   → Script SQL, modelo relacional y documentación de base de datos
 ```
 
----
-
 # Base de datos AquaCar
 
 La carpeta `/database` contiene:
@@ -120,7 +118,7 @@ Crear archivo `.env` dentro de `/backend` con la configuración correspondiente:
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=tu_password
-DB_NAME=aquacar
+DB_NAME=bd_aquacar
 PORT=3000
 ```
 
@@ -142,11 +140,27 @@ npm start
 
 ## Frontend
 
-https://aquacar-frontend.onrender.com/
+https://aquacar-frontend.onrender.com
 
-## Backend
+## Backend/API
 
 https://aquacar-backen.onrender.com
+
+---
+
+# Credenciales de prueba
+
+## Perfil administrador
+
+Correo: admin@aquacar.cl  
+Contraseña: 123456
+
+## Perfil cliente
+
+Nombre: Juan  
+Apellido: Pérez  
+Correo: cliente@aquacar.cl  
+Contraseña: cliente123
 
 ---
 
