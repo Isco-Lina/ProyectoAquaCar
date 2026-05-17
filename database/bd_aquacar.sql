@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS aquacar;
+USE aquacar;
+
 CREATE TABLE ROL (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL UNIQUE
@@ -79,3 +82,17 @@ VALUES
 ('Lavado Basico', 'Lavado exterior', 30, 10000, TRUE),
 ('Lavado Full', 'Lavado interior y exterior', 60, 15000, TRUE),
 ('Full + Encerado', 'Servicio completo premium con encerado', 90, 20000, TRUE);
+
+-- Usuarios de prueba
+-- El perfil administrador se crea manualmente mediante script SQL,
+-- ya que el sistema solo permite el registro de usuarios cliente
+-- desde la interfaz web.
+
+-- Importante:
+-- Las contraseñas almacenadas en la tabla USUARIO deben estar
+-- cifradas mediante bcryptjs para permitir autenticación correcta
+-- dentro del sistema.
+
+INSERT INTO USUARIO (id_rol, nombre, apellido, correo, contrasena, telefono) VALUES
+(1, 'Administrador', 'AquaCar', 'admin@aquacar.cl', '$2b$10$pCjrCFNyS55BAMjVmAixoOme/6Q7lKdspDBMUcAC4IVdW5mtFEl7C', '999999999'),
+(2, 'Cliente', 'Prueba', 'cliente@aquacar.cl', '$2b$10$roMeoBFSHvdUcswDHN/nGuXjOAqNjiPb2L5isr/PZlA12OQ8VGCFC','988888888');
