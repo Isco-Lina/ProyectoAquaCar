@@ -3,125 +3,383 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AquaCar</title>
-    <link rel="stylesheet" href="./css/index.css" />
+    <title>AquaCar - Lavado Premium para tu vehículo</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="./css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="contenedor">
-      <section class="hero">
-        <h1>AquaCar</h1>
+  <body class="home-page page-bg">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua aqua-navbar">
+        <a class="navbar-brand aqua-brand" href="./index.html">
+          <img
+            src="./images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <div class="aqua-nav-actions ms-auto">
+          <a href="pages/login.html" class="aqua-nav-link">Iniciar sesión</a>
+          <a href="pages/registro.html" class="aqua-nav-link">Registrarse</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero hero-home">
+      <div class="hero-content hero-glass">
+        <p class="hero-kicker">
+          <i class="bi bi-stars"></i> Detailing premium para tu vehículo
+        </p>
+        <h1>Lavado automotriz premium con estilo real</h1>
         <p>
-          Sistema web de reservas para lavado de vehículos. Revisa nuestros
-          servicios y agenda tu atención de forma rápida y simple.
+          Tecnología, precisión y una experiencia visual de alto nivel para que
+          tu auto se vea impecable desde el primer instante.
         </p>
-
-        <div class="botones">
-          <a href="pages/login.html" class="btn btn-login">Iniciar sesión</a>
-          <a href="pages/registro.html" class="btn btn-registro">Registrarse</a>
-        </div>
-      </section>
-
-      <h2 class="catalogo-titulo">Catálogo de servicios</h2>
-
-      <section class="catalogo">
-        <div class="card">
-          <div class="card-imagen">
-            <img
-              src="images/catalogo/image-1.jpeg"
-              alt="Lavado básico AquaCar"
-            />
-          </div>
-          <h3>Lavado básico</h3>
-          <p>
-            Ideal para una limpieza exterior rápida, práctica y efectiva para el
-            día a día.
-          </p>
-          <div class="precio">$12.000</div>
-        </div>
-
-        <div class="card">
-          <div class="card-imagen">
-            <img src="images/catalogo/image-1.jpeg" alt="Lavado full AquaCar" />
-          </div>
-          <h3>Lavado full</h3>
-          <p>
-            Limpieza exterior e interior con mayor detalle para entregar un
-            acabado más completo.
-          </p>
-          <div class="precio">$15.000</div>
-        </div>
-
-        <div class="card">
-          <div class="card-imagen">
-            <img
-              src="images/catalogo/image-1.jpeg"
-              alt="Lavado full con encerado AquaCar"
-            />
-          </div>
-          <h3>Lavado full + encerado</h3>
-          <p>
-            Servicio completo con encerado para mejorar el brillo y cuidar la
-            pintura del vehículo.
-          </p>
-          <div class="precio">$17.000</div>
-        </div>
-      </section>
-
-      <section id="contacto" class="seccion-contacto">
-        <h2>Contacto</h2>
-        <p class="contacto-texto">
-          Contáctanos a través de los siguientes medios
-        </p>
-
-        <div class="iconos-contacto">
-          <a href="https://www.instagram.com/aquacar.3n/" target="_blank">
-            <img
-              src="images/contacto/instagram.png"
-              alt="Instagram"
-              title="Instagram"
-            />
+        <div class="hero-buttons">
+          <a href="pages/registro.html" class="btn-aqua">
+            <i class="bi bi-play-fill"></i> Comenzar ahora
           </a>
-
-          <a href="https://wa.me/56982820443" target="_blank">
-            <img
-              src="images/contacto/whatsapp.png"
-              alt="WhatsApp"
-              title="WhatsApp"
-            />
+          <a href="pages/login.html" class="btn-aqua-secondary">
+            <i class="bi bi-box-arrow-in-right"></i> Acceder
           </a>
         </div>
+      </div>
+    </section>
 
-        <ul class="lista-contacto">
-          <li>
-            <strong>Dirección:</strong> Rosas 322, Constitución, Región del
-            Maule
-          </li>
-          <li>
-            <strong>Horario de atención:</strong> Lunes a sábado de 9:00 a 19:00
-            hrs
-          </li>
-        </ul>
-
-        <div class="mapa-contacto">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3254.755506416805!2d-72.4069162!3d-35.3368924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96665f3cb4a46337%3A0xd17dc58a5b9479d6!2sRosas%20322%2C%203560662%20Constituci%C3%B3n%2C%20Maule!5e0!3m2!1ses!2scl!4v1775417637794!5m2!1ses!2scl"
-            width="100%"
-            height="260"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </section>
-
-      <footer id="pie-pagina">
-        <p>
-          &copy; 2026 AquaCar - Tecnología de punta para el cuidado profesional
-          de tu vehículo. Reserva online y disfruta del mejor servicio. Todos
-          los derechos reservados.
+    <!-- SERVICIOS SECTION -->
+    <section class="section-premium section-servicios">
+      <div class="container-aqua">
+        <h2 class="section-title">Nuestros Servicios Premium</h2>
+        <p class="section-subtitle">
+          Elige el lavado perfecto para tu vehículo
         </p>
-      </footer>
+
+        <div class="grid-services mt-5">
+          <div
+            class="service-card glass-card is-clickable"
+            role="button"
+            tabindex="0"
+            data-service-key="basico"
+            data-service-image="./images/fondos/audi.jpg"
+          >
+            <div class="service-card-img">
+              <img
+                src="./images/fondos/audi.jpg"
+                alt="Lavado Básico"
+                class="service-card-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Lavado Básico</h3>
+              <p class="service-card-text">
+                Limpieza exterior rápida y efectiva. Ideal para mantenimiento
+                diario.
+              </p>
+              <p class="service-price">$12.000</p>
+            </div>
+          </div>
+
+          <div
+            class="service-card glass-card is-clickable"
+            role="button"
+            tabindex="0"
+            data-service-key="full"
+            data-service-image="./images/fondos/ferrari.jpg"
+          >
+            <div class="service-card-img">
+              <img
+                src="./images/fondos/ferrari.jpg"
+                alt="Lavado Full"
+                class="service-card-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Lavado Full</h3>
+              <p class="service-card-text">
+                Limpieza exterior e interior completa con detalle superior.
+              </p>
+              <p class="service-price">$15.000</p>
+            </div>
+          </div>
+
+          <div
+            class="service-card glass-card is-clickable"
+            role="button"
+            tabindex="0"
+            data-service-key="premium"
+            data-service-image="./images/fondos/ferrari-4.jpg"
+          >
+            <div class="service-card-img">
+              <img
+                src="./images/fondos/ferrari-4.jpg"
+                alt="Lavado Premium + Encerado"
+                class="service-card-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3 class="service-card-title">Lavado Premium + Encerado</h3>
+              <p class="service-card-text">
+                Servicio completo con protección de cera para máximo brillo.
+              </p>
+              <p class="service-price">$17.000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="section-premium section-experiencia">
+      <div class="container-aqua">
+        <h2 class="section-title">¿Por qué elegir AquaCar?</h2>
+
+        <div class="row g-4 mt-4">
+          <div class="col-md-4">
+            <div class="glass-card feature-card text-center h-100">
+              <i
+                class="bi bi-lightning-charge feature-icon feature-icon-yellow"
+              ></i>
+              <h4>Rápido y Eficiente</h4>
+              <p>Reserva en segundos y recibe tu vehículo limpio en minutos.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="glass-card feature-card text-center h-100">
+              <i class="bi bi-shield-check feature-icon feature-icon-green"></i>
+              <h4>100% Seguro</h4>
+              <p>Profesionales certificados y productos de calidad premium.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="glass-card feature-card text-center h-100">
+              <i
+                class="bi bi-calendar-check feature-icon feature-icon-cyan"
+              ></i>
+              <h4>Reserva Flexible</h4>
+              <p>Elige el horario que mejor se adapte a ti.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-flow mt-5">
+          <div
+            class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-4"
+          >
+            <div>
+              <h3 class="section-subheading mb-0">Cómo funciona</h3>
+            </div>
+            <p class="section-subtitle text-start mb-0">
+              Un flujo claro, rápido y pensado para que reserves sin fricción.
+            </p>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+              <div class="glass-card step-card h-100">
+                <div class="step-chip">1</div>
+                <i class="bi bi-person-plus-fill step-icon"></i>
+                <h5>Regístrate</h5>
+                <p>Crea tu cuenta en AquaCar en segundos.</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="glass-card step-card h-100">
+                <div class="step-chip">2</div>
+                <i class="bi bi-car-front step-icon"></i>
+                <h5>Agrega vehículo</h5>
+                <p>Registra los datos de tu auto una sola vez.</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="glass-card step-card h-100">
+                <div class="step-chip">3</div>
+                <i class="bi bi-calendar-heart step-icon"></i>
+                <h5>Elige servicio</h5>
+                <p>Selecciona el lavado deseado y el horario ideal.</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="glass-card step-card h-100">
+                <div class="step-chip">4</div>
+                <i class="bi bi-check-circle-fill step-icon"></i>
+                <h5>Hecho</h5>
+                <p>Reserva confirmada. Todo listo para tu visita.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FINAL SECTION -->
+    <section id="contacto" class="section-premium section-contacto-final">
+      <div class="container-aqua">
+        <div class="contact-final-layout">
+          <div class="glass-card contact-cta-card">
+            <h2 class="section-title text-start">
+              ¿Listo para un lavado premium?
+            </h2>
+            <p class="contact-copy">
+              Únete a AquaCar y agenda tu siguiente lavado con una experiencia
+              visual más limpia, rápida y profesional.
+            </p>
+            <div class="hero-buttons justify-content-start mb-0">
+              <a href="pages/registro.html" class="btn-aqua">
+                <i class="bi bi-play-fill"></i> Registrarse gratis
+              </a>
+              <a href="pages/login.html" class="btn-aqua-secondary">
+                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+              </a>
+              <a href="pages/reservas.html" class="btn-aqua-secondary">
+                <i class="bi bi-calendar2-check"></i> Agendar
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <a
+              class="glass-card contact-detail-card"
+              href="https://www.instagram.com/aquacar.3n/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="bi bi-instagram"></i>
+              <strong>Instagram</strong>
+              <span>@aquacar.3n</span>
+            </a>
+            <a
+              class="glass-card contact-detail-card"
+              href="https://wa.me/56982820443"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="bi bi-whatsapp"></i>
+              <strong>WhatsApp</strong>
+              <span>+56 9 8282 0443</span>
+            </a>
+            <div class="glass-card contact-detail-card">
+              <i class="bi bi-geo-alt"></i>
+              <strong>Dirección</strong>
+              <span>Rosas 322, Constitución, Región del Maule</span>
+            </div>
+            <div class="glass-card contact-detail-card">
+              <i class="bi bi-clock"></i>
+              <strong>Horario</strong>
+              <span>Lunes a sábado de 9:00 a 19:00 hrs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="pie-pagina">
+      <p>
+        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        reservados.
+      </p>
+    </footer>
+
+    <div
+      class="modal fade service-modal"
+      id="servicioModal"
+      tabindex="-1"
+      aria-labelledby="servicioModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <p class="text-uppercase text-info small mb-1">
+                <i class="bi bi-droplet-fill"></i> Servicio destacado
+              </p>
+              <h5 class="modal-title" id="servicioModalLabel">Servicio</h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-6">
+                <div class="service-modal-figure">
+                  <img
+                    id="servicioModalImagen"
+                    src=""
+                    alt="Servicio AquaCar"
+                    class="service-modal-image"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div
+                    class="vehicle-icon"
+                    id="servicioModalIcon"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        var(--aqua-cyan-bright),
+                        var(--aqua-green-water)
+                      );
+                    "
+                  >
+                    <i class="bi bi-water"></i>
+                  </div>
+                  <div>
+                    <div class="service-modal-price" id="servicioModalPrecio">
+                      $0
+                    </div>
+                    <div class="aqua-subtext">
+                      Duración estimada:
+                      <strong id="servicioModalDuracion">-</strong>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  class="service-modal-detail"
+                  id="servicioModalDescripcion"
+                ></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn-aqua w-100 justify-content-center"
+              id="servicioModalAction"
+              href="./pages/login.html"
+            >
+              Iniciar sesión
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

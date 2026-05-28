@@ -20,9 +20,10 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       mensaje.style.color = "#00ff88";
-      mensaje.textContent = data.mensaje;
+      mensaje.textContent = data.mensaje || "Sesión iniciada correctamente.";
 
       localStorage.setItem("usuario", JSON.stringify(data.usuario));
+      guardarToastPendiente("Sesión iniciada correctamente.", "success");
 
       setTimeout(() => {
         if (data.usuario.rol === "admin") {
@@ -33,10 +34,12 @@ loginForm.addEventListener("submit", async (e) => {
       }, 800);
     } else {
       mensaje.style.color = "#ff6b6b";
-      mensaje.textContent = data.mensaje || "Credenciales incorrectas";
+      mensaje.textContent = data.mensaje || "Correo o contraseña incorrectos.";
+      mostrarToast("Correo o contraseña incorrectos.", "error");
     }
   } catch (error) {
     mensaje.style.color = "#ff6b6b";
-    mensaje.textContent = "Error al conectar con el servidor";
+    mensaje.textContent = "No se pudo iniciar sesión.";
+    mostrarToast("No se pudo iniciar sesión.", "error");
   }
 });

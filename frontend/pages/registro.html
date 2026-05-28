@@ -3,57 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro AquaCar</title>
-    <link rel="stylesheet" href="../css/registro.css" />
+    <title>Registro AquaCar - Crea tu cuenta</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="../css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="container">
-      <div class="card">
-        <h1>Crear cuenta</h1>
-        <p>Regístrate para gestionar tus vehículos y reservas</p>
-
-        <form id="registroForm">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" required />
-          </div>
-
-          <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" required />
-          </div>
-
-          <div class="form-group">
-            <label for="correo">Correo</label>
-            <input type="email" id="correo" required />
-          </div>
-
-          <div class="form-group">
-            <label for="contrasena">Contraseña</label>
-            <input type="password" id="contrasena" required />
-          </div>
-
-          <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="text" id="telefono" required />
-          </div>
-
-          <button type="submit">Registrarse</button>
-        </form>
-
-        <div class="message" id="mensaje"></div>
-
-        <div class="link-text">
-          ¿Ya tienes cuenta? <a href="./login.html">Inicia sesión aquí</a>
-        </div>
-
-        <div class="link-text">
-          <a href="../index.html">Volver al inicio</a>
+  <body class="page-bg auth-bg register-page">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua">
+        <a class="navbar-brand aqua-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <div class="aqua-nav-actions ms-auto">
+          <a href="./login.html" class="aqua-nav-link">Iniciar sesión</a>
+          <a href="./registro.html" class="aqua-nav-link active">Registrarse</a>
         </div>
       </div>
-    </div>
+    </nav>
 
+    <!-- REGISTER SECTION -->
+    <section
+      class="auth-stage"
+      style="
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          var(--aqua-bg-darkest) 0%,
+          var(--aqua-bg-darker) 100%
+        );
+        padding: 40px 20px;
+      "
+    >
+      <div style="width: 100%; max-width: 500px">
+        <div class="form-container">
+          <div class="auth-brand">
+            <img
+              src="../images/logo.png"
+              alt="Logo AquaCar"
+              class="aqua-brand-logo"
+            />
+            <span class="aqua-brand-text">AquaCar</span>
+          </div>
+
+          <h2 class="auth-title">Crear cuenta</h2>
+          <p class="auth-subtitle">Únete a AquaCar hoy</p>
+
+          <form id="registroForm" class="aqua-form">
+            <div class="form-group">
+              <label for="nombre"> <i class="bi bi-person"></i> Nombre </label>
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Tu nombre"
+                class="aqua-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="apellido">
+                <i class="bi bi-person"></i> Apellido
+              </label>
+              <input
+                type="text"
+                id="apellido"
+                placeholder="Tu apellido"
+                class="aqua-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="correo">
+                <i class="bi bi-envelope"></i> Correo electrónico
+              </label>
+              <input
+                type="email"
+                id="correo"
+                placeholder="tu@ejemplo.com"
+                class="aqua-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contrasena">
+                <i class="bi bi-lock"></i> Contraseña
+              </label>
+              <input
+                type="password"
+                id="contrasena"
+                placeholder="••••••••"
+                class="aqua-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">
+                <i class="bi bi-telephone"></i> Teléfono
+              </label>
+              <div class="telefono-group">
+                <span class="telefono-prefix">+56 9</span>
+                <input
+                  type="text"
+                  id="telefono"
+                  placeholder="89888777"
+                  class="aqua-input telefono-input"
+                  inputmode="numeric"
+                  maxlength="8"
+                  autocomplete="tel-national"
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn-aqua aqua-btn"
+              style="width: 100%; margin-top: 25px; margin-bottom: 20px"
+            >
+              <i class="bi bi-person-check"></i> Registrarse
+            </button>
+          </form>
+
+          <div class="message" id="mensaje"></div>
+
+          <div
+            style="
+              border-top: 1px solid var(--aqua-border-subtle);
+              padding-top: 25px;
+              margin-top: 25px;
+              text-align: center;
+            "
+          >
+            <p
+              style="
+                color: var(--aqua-text-gray);
+                margin-bottom: 15px;
+                font-size: 0.95rem;
+              "
+            >
+              ¿Ya tienes cuenta?
+            </p>
+            <a
+              href="./login.html"
+              style="
+                color: var(--aqua-cyan-bright);
+                text-decoration: none;
+                font-weight: 700;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <i class="bi bi-box-arrow-in-right"></i> Inicia sesión
+            </a>
+          </div>
+
+          <div style="text-align: center; margin-top: 25px">
+            <a
+              href="../index.html"
+              style="
+                color: var(--aqua-text-muted);
+                text-decoration: none;
+                font-size: 0.9rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              <i class="bi bi-arrow-left"></i> Volver al inicio
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/registro.js"></script>
   </body>
 </html>

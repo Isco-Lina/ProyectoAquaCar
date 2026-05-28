@@ -6,15 +6,36 @@ const bcrypt = require("bcryptjs");
 router.post("/usuarios", (req, res) => {
   const { nombre, apellido, correo, contrasena, telefono } = req.body;
 
+  const correoNormalizado = String(correo || "")
+    .trim()
+    .toLowerCase();
+  const telefonoNormalizado = String(telefono || "")
+    .replace(/\s|-/g, "")
+    .trim();
+  const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const regexTelefono = /^\+569\d{8}$/;
+
   if (!nombre || !apellido || !correo || !contrasena || !telefono) {
     return res.status(400).json({
       mensaje: "Todos los campos son obligatorios",
     });
   }
 
+  if (!regexCorreo.test(correoNormalizado)) {
+    return res.status(400).json({
+      mensaje: "El correo debe tener un formato válido",
+    });
+  }
+
+  if (!regexTelefono.test(telefonoNormalizado)) {
+    return res.status(400).json({
+      mensaje: "El teléfono debe tener formato chileno válido: +569XXXXXXXX",
+    });
+  }
+
   const sqlVerificarCorreo = "SELECT * FROM USUARIO WHERE correo = ?";
 
-  db.query(sqlVerificarCorreo, [correo], (error, results) => {
+  db.query(sqlVerificarCorreo, [correoNormalizado], (error, results) => {
     if (error) {
       return res.status(500).json({
         mensaje: "Error al verificar correo",
@@ -45,7 +66,14 @@ router.post("/usuarios", (req, res) => {
 
       db.query(
         sqlInsertar,
-        [2, nombre, apellido, correo, contrasenaHash, telefono],
+        [
+          2,
+          nombre,
+          apellido,
+          correoNormalizado,
+          contrasenaHash,
+          telefonoNormalizado,
+        ],
         (error, results) => {
           if (error) {
             return res.status(500).json({

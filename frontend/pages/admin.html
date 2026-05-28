@@ -3,96 +3,348 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrador - AquaCar</title>
-    <link rel="stylesheet" href="../css/admin.css" />
+    <title>Panel Administrador - AquaCar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="../css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="contenedor">
-      <section class="hero">
-        <h1>Panel Administrador</h1>
-        <p>
-          Revisa el resumen general, administra reservas y accede a los módulos
-          de gestión de AquaCar.
-        </p>
-
-        <div class="usuario-box">
-          <span>Sesión iniciada como:</span>
-          <strong id="usuario_logueado"></strong>
-        </div>
-
-        <div class="acciones-superiores">
+  <body class="page-bg admin-page admin-bg">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua">
+        <a class="navbar-brand aqua-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <div class="aqua-nav-actions ms-auto">
+          <span class="aqua-user-online">
+            <i class="bi bi-person-circle"></i>
+            <strong id="usuario_logueado">Admin</strong>
+          </span>
+          <a href="./admin.html" class="aqua-nav-link active">Panel</a>
           <button
             id="btnClientesVehiculos"
-            class="btn btn-secundario"
+            class="aqua-nav-link aqua-nav-link-button"
             type="button"
           >
-            Clientes y vehículos
+            Clientes
           </button>
-          <a href="./servicios-admin.html" class="btn btn-secundario">
-            Gestionar servicios
+          <a href="./servicios-admin.html" class="aqua-nav-link"> Servicios </a>
+          <button
+            id="btnCerrarSesion"
+            class="aqua-nav-link aqua-nav-link-button"
+            type="button"
+          >
+            <i class="bi bi-box-arrow-right"></i> Cerrar
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO + ACCIONES -->
+    <section class="page-stage admin-stage admin-dashboard-section">
+      <div class="container-aqua hero-stack">
+        <div class="hero-copy admin-hero-copy">
+          <h1>Panel Administrador</h1>
+          <p>
+            Gestiona reservas, clientes, vehículos y servicios de AquaCar desde
+            una vista premium, limpia y concentrada.
+          </p>
+        </div>
+
+        <div class="admin-section-heading mb-4">
+          <div>
+            <p class="section-eyebrow">Acceso rápido</p>
+          </div>
+        </div>
+
+        <div class="aqua-grid-cards admin-actions-grid">
+          <a href="#listaReservas" class="panel-action-card aqua-card">
+            <div class="aqua-card-topline"></div>
+            <div class="panel-action-card-body">
+              <div
+                class="panel-action-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-cyan-bright),
+                    #00a5d9
+                  );
+                "
+              >
+                <i class="bi bi-calendar2-event"></i>
+              </div>
+              <h3 class="panel-action-title">Reservas</h3>
+              <p class="panel-action-text">
+                Revisa y administra las reservas registradas con sus estados.
+              </p>
+            </div>
           </a>
-          <button id="btnCerrarSesion" class="btn btn-cerrar">
-            Cerrar sesión
+          <a href="./servicios-admin.html" class="panel-action-card aqua-card">
+            <div class="aqua-card-topline"></div>
+            <div class="panel-action-card-body">
+              <div
+                class="panel-action-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-yellow-accent),
+                    #ffb84d
+                  );
+                "
+              >
+                <i class="bi bi-tools"></i>
+              </div>
+              <h3 class="panel-action-title">Servicios</h3>
+              <p class="panel-action-text">
+                Crea, edita y activa o desactiva servicios desde una vista
+                clara.
+              </p>
+            </div>
+          </a>
+          <a
+            href="./clientes-vehiculos.html"
+            class="panel-action-card aqua-card"
+          >
+            <div class="aqua-card-topline"></div>
+            <div class="panel-action-card-body">
+              <div
+                class="panel-action-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-green-water),
+                    #00cc99
+                  );
+                "
+              >
+                <i class="bi bi-people"></i>
+              </div>
+              <h3 class="panel-action-title">Clientes y vehículos</h3>
+              <p class="panel-action-text">
+                Consulta clientes registrados y los vehículos asociados a cada
+                uno.
+              </p>
+            </div>
+          </a>
+          <button
+            id="btnCerrarSesionPanel"
+            type="button"
+            class="panel-action-card aqua-card text-start border-0 w-100"
+          >
+            <div class="aqua-card-topline"></div>
+            <div class="panel-action-card-body">
+              <div
+                class="panel-action-icon"
+                style="background: linear-gradient(135deg, #e74c3c, #c0392b)"
+              >
+                <i class="bi bi-box-arrow-right"></i>
+              </div>
+              <h3 class="panel-action-title">Cerrar sesión</h3>
+              <p class="panel-action-text">
+                Salir de la sesión administrativa de forma segura.
+              </p>
+            </div>
           </button>
         </div>
-      </section>
-
-      <section class="resumen-card">
-        <h2>Resumen general</h2>
-        <div class="resumen-grid" id="resumenGrid">
-          <div class="stat-box">
-            <span>Total reservas</span>
-            <strong id="totalReservas">0</strong>
-          </div>
-          <div class="stat-box">
-            <span>Pendientes</span>
-            <strong id="totalPendientes">0</strong>
-          </div>
-          <div class="stat-box">
-            <span>Confirmadas</span>
-            <strong id="totalConfirmadas">0</strong>
-          </div>
-          <div class="stat-box">
-            <span>Completadas</span>
-            <strong id="totalCompletadas">0</strong>
-          </div>
-          <div class="stat-box">
-            <span>Canceladas</span>
-            <strong id="totalCanceladas">0</strong>
-          </div>
-        </div>
-      </section>
-
-      <section class="listado-card">
-        <h2>Reservas registradas</h2>
-
-        <div class="filtros-admin">
-          <div class="campo-filtro">
-            <label for="inputBuscar">Buscar</label>
-            <input
-              type="text"
-              id="inputBuscar"
-              placeholder="Buscar por cliente, correo, patente, vehículo o servicio"
-            />
-          </div>
-
-          <div class="campo-filtro">
-            <label for="filtroEstado">Estado</label>
-            <select id="filtroEstado">
-              <option value="">Todos</option>
-              <option value="Pendiente">Pendiente</option>
-              <option value="Confirmada">Confirmada</option>
-              <option value="Completada">Completada</option>
-              <option value="Cancelada">Cancelada</option>
-            </select>
+      </div>
+    </section>
+    <!-- RESUMEN GENERAL -->
+    <section
+      class="page-stage admin-stage admin-summary-section section-gap-tight"
+    >
+      <div class="container-aqua">
+        <div class="admin-section-heading">
+          <div>
+            <h2 class="section-heading text-start mb-0">Resumen General</h2>
           </div>
         </div>
 
-        <div id="mensaje" class="message"></div>
-        <div id="listaReservas" class="lista-grid"></div>
-      </section>
-    </div>
+        <div id="resumenGrid" class="row g-4 admin-stats-grid">
+          <div class="col-md-6 col-lg-4 col-xl-2-4 mb-4">
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-cyan-bright),
+                    #00a5d9
+                  );
+                "
+              >
+                <i class="bi bi-calendar2-event"></i>
+              </div>
+              <div class="stat-content">
+                <p>Total Reservas</p>
+                <strong id="totalReservas">0</strong>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-md-6 col-lg-4 col-xl-2-4 mb-4">
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-yellow-accent),
+                    #ffb84d
+                  );
+                "
+              >
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <div class="stat-content">
+                <p>Pendientes</p>
+                <strong id="totalPendientes">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-xl-2-4 mb-4">
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="background: linear-gradient(135deg, #4a90e2, #357abd)"
+              >
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <div class="stat-content">
+                <p>Confirmadas</p>
+                <strong id="totalConfirmadas">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-xl-2-4 mb-4">
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--aqua-green-water),
+                    #00cc99
+                  );
+                "
+              >
+                <i class="bi bi-checkmark-circle"></i>
+              </div>
+              <div class="stat-content">
+                <p>Completadas</p>
+                <strong id="totalCompletadas">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-xl-2-4 mb-4">
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="background: linear-gradient(135deg, #e74c3c, #c0392b)"
+              >
+                <i class="bi bi-x-circle"></i>
+              </div>
+              <div class="stat-content">
+                <p>Canceladas</p>
+                <strong id="totalCanceladas">0</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVAS REGISTRADAS -->
+    <section
+      class="page-stage admin-stage admin-reservas-section section-gap-tight"
+    >
+      <div class="container-aqua">
+        <div class="admin-section-heading">
+          <div>
+
+            <h2 class="section-heading text-start mb-0">
+              Reservas Registradas
+            </h2>
+          </div>
+          <p class="section-lead mb-0 admin-section-lead">
+            Revisa, filtra y administra las reservas con una lectura limpia y
+            premium.
+          </p>
+        </div>
+
+        <div class="admin-filters-panel mb-4">
+          <div class="row g-3 align-items-end">
+            <div class="col-lg-8">
+              <div class="admin-filter-group">
+                <label for="inputBuscar" class="admin-filter-label">
+                  <i class="bi bi-search"></i> Buscar
+                </label>
+                <input
+                  type="text"
+                  class="form-control form-control-aqua aqua-input"
+                  id="inputBuscar"
+                  placeholder="Cliente, correo, patente, vehículo o servicio..."
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="admin-filter-group">
+                <label for="filtroEstado" class="admin-filter-label">
+                  <i class="bi bi-funnel"></i> Estado
+                </label>
+                <select id="filtroEstado" class="form-select form-select-aqua">
+                  <option value="">Todos los estados</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Confirmada">Confirmada</option>
+                  <option value="Completada">Completada</option>
+                  <option value="Cancelada">Cancelada</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="mensaje" class="message admin-message"></div>
+
+        <div
+          id="listaReservas"
+          class="row g-4 admin-reservas-grid"
+          style="min-height: 300px"
+        >
+          <p class="sin-datos admin-loading-state">
+            <i class="bi bi-hourglass-split"></i> Cargando reservas...
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="pie-pagina">
+      <p>
+        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        reservados.
+      </p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/admin.js"></script>

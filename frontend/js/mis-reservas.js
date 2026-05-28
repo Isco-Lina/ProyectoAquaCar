@@ -9,6 +9,73 @@ if (!usuario) {
 
 usuarioLogueadoInput.textContent = `${usuario.nombre} ${usuario.apellido}`;
 
+function renderizarEstadoVacío(texto) {
+  return `
+    <div class="col-12">
+      <div class="aqua-empty-state">
+        <i class="bi bi-calendar-x"></i>
+        <p>${texto}</p>
+      </div>
+    </div>
+  `;
+}
+
+function obtenerClaseBadge(estado) {
+  switch (estado) {
+    case "Pendiente":
+      return "badge-pending";
+    case "Confirmada":
+      return "badge-confirmed";
+    case "Completada":
+      return "badge-completed";
+    case "Cancelada":
+      return "badge-cancelled";
+    default:
+      return "badge-pending";
+  }
+}
+
+function formatearReserva(reserva) {
+  const cancelar = esCancelable(reserva)
+    ? `
+      <div class="reservation-card-footer mt-4">
+        <button class="btn btn-outline-danger w-100" data-action="cancelar-reserva" data-id-reserva="${reserva.id_reserva}">
+          <i class="bi bi-x-circle"></i> Cancelar reserva
+        </button>
+      </div>
+    `
+    : "";
+
+  return `
+    <div class="col-lg-6 col-xl-4">
+      <article class="reservation-card h-100">
+        <div class="aqua-card-topline"></div>
+        <div class="reservation-card-head d-flex align-items-start gap-3">
+          <div class="reservation-icon" style="background: linear-gradient(135deg, var(--aqua-cyan-bright), var(--aqua-green-water));">
+            <i class="bi bi-calendar2-check"></i>
+          </div>
+          <div class="flex-grow-1">
+            <h3 class="reservation-title mb-1">${reserva.nombre_servicio}</h3>
+            <p class="reservation-subtitle mb-0">Vehículo ${reserva.marca} ${reserva.modelo}</p>
+          </div>
+        </div>
+        <div class="reservation-card-body">
+          <div class="reservation-meta">
+            <div class="item-info"><i class="bi bi-123"></i><strong>Patente:</strong> ${reserva.patente}</div>
+            <div class="item-info"><i class="bi bi-calendar-event"></i><strong>Fecha:</strong> ${formatearFecha(reserva.fecha_reserva)}</div>
+            <div class="item-info"><i class="bi bi-clock"></i><strong>Hora:</strong> ${formatearHora(reserva.hora_reserva)}</div>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="badge-status ${obtenerClaseBadge(reserva.nombre_estado)}">${reserva.nombre_estado}</span>
+            </div>
+            <div class="item-info align-items-start"><i class="bi bi-chat-dots"></i><strong>Observaciones:</strong> ${reserva.observaciones || "Sin observaciones"}</div>
+          </div>
+          ${cancelar}
+        </div>
+      </article>
+    </div>
+  `;
+}
+
 document.getElementById("btnCerrarSesion").addEventListener("click", () => {
   cerrarSesion();
 });
@@ -40,21 +107,6 @@ function mostrarMensaje(texto, esExito) {
   mensaje.textContent = texto;
 }
 
-function obtenerClaseEstado(estado) {
-  switch (estado) {
-    case "Pendiente":
-      return "estado-pendiente";
-    case "Confirmada":
-      return "estado-confirmada";
-    case "Completada":
-      return "estado-completada";
-    case "Cancelada":
-      return "estado-cancelada";
-    default:
-      return "";
-  }
-}
-
 async function cargarReservasUsuario() {
   try {
     const response = await fetch(
@@ -69,37 +121,17 @@ async function cargarReservasUsuario() {
     }
 
     if (reservas.length === 0) {
-      listaReservas.innerHTML =
-        '<p class="sin-datos">Aún no tienes reservas registradas.</p>';
+      listaReservas.innerHTML = renderizarEstadoVacío(
+        "Aún no tienes reservas registradas.",
+      );
       return;
     }
 
-    listaReservas.innerHTML = "";
-
-    reservas.forEach((reserva) => {
-      const card = document.createElement("article");
-      card.className = "reserva-item";
-
-      card.innerHTML = `
-        <h3>${reserva.nombre_servicio}</h3>
-        <p><strong>Vehículo:</strong> ${reserva.marca} ${reserva.modelo}</p>
-        <p><strong>Patente:</strong> ${reserva.patente}</p>
-        <p><strong>Fecha:</strong> ${formatearFecha(reserva.fecha_reserva)}</p>
-        <p><strong>Hora:</strong> ${formatearHora(reserva.hora_reserva)}</p>
-        <p><strong>Estado:</strong><span class="estado-badge ${obtenerClaseEstado(reserva.nombre_estado)}">${reserva.nombre_estado}</span></p>
-        <p><strong>Observaciones:</strong> ${reserva.observaciones || "Sin observaciones"}</p>
-        ${
-          esCancelable(reserva)
-            ? `<button class="btn-cancelar" data-action="cancelar-reserva" data-id-reserva="${reserva.id_reserva}">Cancelar reserva</button>`
-            : ""
-        }
-      `;
-
-      listaReservas.appendChild(card);
-    });
+    listaReservas.innerHTML = reservas.map(formatearReserva).join("");
   } catch (error) {
-    listaReservas.innerHTML =
-      '<p class="sin-datos">Error al conectar con el servidor.</p>';
+    listaReservas.innerHTML = renderizarEstadoVacío(
+      "Error al conectar con el servidor.",
+    );
   }
 }
 
@@ -120,12 +152,18 @@ async function cancelarReserva(idReserva) {
 
     if (response.ok) {
       mostrarMensaje(data.mensaje || "Reserva cancelada correctamente", true);
+      mostrarToast("Reserva cancelada correctamente.", "success");
       cargarReservasUsuario();
     } else {
-      mostrarMensaje(data.mensaje || "No se pudo cancelar la reserva", false);
+      mostrarMensaje(
+        data.mensaje || "No se pudo actualizar la reserva.",
+        false,
+      );
+      mostrarToast("No se pudo actualizar la reserva.", "error");
     }
   } catch (error) {
-    mostrarMensaje("Error al conectar con el servidor", false);
+    mostrarMensaje("No se pudo actualizar la reserva.", false);
+    mostrarToast("No se pudo actualizar la reserva.", "error");
   }
 }
 

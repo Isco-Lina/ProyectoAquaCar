@@ -3,100 +3,300 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel cliente - AquaCar</title>
-    <link rel="stylesheet" href="../css/panel.css" />
+    <title>Panel Cliente - AquaCar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="../css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="contenedor">
-      <section class="hero">
-        <h1>AquaCar</h1>
-        <p>
-          Desde aquí puedes gestionar tus vehículos y reservas de forma rápida.
-        </p>
+  <body class="page-bg panel-page client-bg">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua">
+        <a class="navbar-brand aqua-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#clienteNavbar"
+          aria-controls="clienteNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="clienteNavbar">
+          <div class="aqua-nav-actions ms-lg-auto">
+            <span class="aqua-user-online">
+              <i class="bi bi-person-circle"></i>
+              <strong id="nombreUsuario">Usuario</strong>
+            </span>
+            <a href="./panel.html" class="aqua-nav-link active">Panel</a>
+            <a href="./reservas.html" class="aqua-nav-link"> Reservar ahora </a>
+            <a href="./mis-reservas.html" class="aqua-nav-link">
+              Mis reservas
+            </a>
+            <a href="./vehiculos.html" class="aqua-nav-link"> Mis vehículos </a>
+            <button
+              id="btnCerrarSesion"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        <div class="usuario-box">
-          <span>Sesión iniciada como:</span>
-          <strong id="nombreUsuario"></strong>
+    <!-- HERO + ACCIONES -->
+    <section class="page-section-bg client-hero panel-bg">
+      <div class="container-aqua hero-stack">
+        <div class="hero-copy">
+          <h1>Panel Cliente</h1>
+          <p>
+            Gestiona tus vehículos, reservas y servicios en AquaCar desde una
+            sola vista premium.
+          </p>
         </div>
 
-        <div class="acciones-cliente">
-          <a href="./vehiculos.html" class="btn btn-secundario">
-            Mis vehículos
+        <div class="quick-actions-grid panel-quick-actions-grid">
+          <a
+            href="./reservas.html"
+            class="card-premium quick-action-card text-decoration-none"
+          >
+            <div class="action-icon">
+              <i
+                class="bi bi-calendar-plus"
+                style="color: var(--aqua-cyan-bright); font-size: 1.5rem"
+              ></i>
+            </div>
+            <h3>Reservar ahora</h3>
+            <p>
+              Agenda una limpieza o servicio premium para cualquiera de tus
+              vehículos.
+            </p>
+            <span class="btn-aqua w-100 justify-content-center"
+              >Ir a reservas</span
+            >
           </a>
-          <a href="./mis-reservas.html" class="btn btn-secundario">
-            Mis reservas
+
+          <a
+            href="./mis-reservas.html"
+            class="card-premium quick-action-card text-decoration-none"
+          >
+            <div class="action-icon">
+              <i
+                class="bi bi-calendar-check"
+                style="color: var(--aqua-green-water); font-size: 1.5rem"
+              ></i>
+            </div>
+            <h3>Mis reservas</h3>
+            <p>
+              Revisa el estado, fecha y detalle de cada reserva registrada en tu
+              cuenta.
+            </p>
+            <span class="btn-aqua-secondary w-100 justify-content-center"
+              >Ver reservas</span
+            >
           </a>
-          <a href="./reservas.html" class="btn btn-secundario">
-            Reservar hora
+
+          <a
+            href="./vehiculos.html"
+            class="card-premium quick-action-card text-decoration-none"
+          >
+            <div class="action-icon">
+              <i
+                class="bi bi-car-front"
+                style="color: var(--aqua-yellow-accent); font-size: 1.5rem"
+              ></i>
+            </div>
+            <h3>Mis vehículos</h3>
+            <p>
+              Registra o administra los autos que usas para reservar tus
+              servicios.
+            </p>
+            <span class="btn-aqua-secondary w-100 justify-content-center"
+              >Administrar</span
+            >
           </a>
-          <button id="btnCerrarSesion" class="btn btn-cerrar">
-            Cerrar sesión
-          </button>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <h2 class="catalogo-titulo">Servicios disponibles</h2>
-
-      <section class="catalogo" id="catalogoServicios">
-        <!-- contenido dinámico -->
-      </section>
-
-      <section id="contacto" class="seccion-contacto">
-        <h2>Contacto</h2>
-        <p class="contacto-texto">
-          Contáctanos a través de los siguientes medios
-        </p>
-
-        <div class="iconos-contacto">
-          <a href="https://www.instagram.com/aquacar.3n/" target="_blank">
-            <img
-              src="../images/contacto/instagram.png"
-              alt="Instagram"
-              title="Instagram"
-            />
-          </a>
-
-          <a href="https://wa.me/56982820443" target="_blank">
-            <img
-              src="../images/contacto/whatsapp.png"
-              alt="WhatsApp"
-              title="WhatsApp"
-            />
-          </a>
+    <!-- SERVICIOS SECTION -->
+    <section
+      id="servicios"
+      class="page-section-bg panel-services-bg section-gap-tight"
+    >
+      <div class="container-aqua">
+        <div class="hero-copy mb-4">
+          <h2 class="section-heading">Servicios disponibles</h2>
+          <p class="section-lead">
+            Elige entre los servicios activos y revisa sus detalles con una
+            vista limpia y premium.
+          </p>
         </div>
-
-        <ul class="lista-contacto">
-          <li>
-            <strong>Dirección:</strong> Rosas 322, Constitución, Región del
-            Maule
-          </li>
-          <li>
-            <strong>Horario de atención:</strong> Lunes a sábado de 9:00 a 19:00
-            hrs
-          </li>
-        </ul>
-
-        <div class="mapa-contacto">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3254.755506416805!2d-72.4069162!3d-35.3368924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96665f3cb4a46337%3A0xd17dc58a5b9479d6!2sRosas%20322%2C%203560662%20Constituci%C3%B3n%2C%20Maule!5e0!3m2!1ses!2scl!4v1775417637794!5m2!1ses!2scl"
-            width="100%"
-            height="260"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <div class="row g-4" id="catalogoServicios">
+          <!-- Servicios cargados dinámicamente -->
         </div>
-      </section>
+      </div>
+    </section>
 
-      <footer id="pie-pagina">
-        <p>
-          &copy; 2026 AquaCar - Tecnología de punta para el cuidado profesional
-          de tu vehículo. Reserva online y disfruta del mejor servicio. Todos
-          los derechos reservados.
-        </p>
-      </footer>
+    <div
+      class="modal fade service-modal"
+      id="servicioModal"
+      tabindex="-1"
+      aria-labelledby="servicioModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <p class="text-uppercase text-info small mb-1">
+                Servicio disponible
+              </p>
+              <h5 class="modal-title" id="servicioModalLabel">Servicio</h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4 align-items-center">
+              <div class="col-lg-6">
+                <div class="service-modal-figure">
+                  <img
+                    id="servicioModalImagen"
+                    src=""
+                    alt="Servicio AquaCar"
+                    class="service-modal-image"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div>
+                    <div class="service-modal-price" id="servicioModalPrecio">
+                      $0
+                    </div>
+                    <div class="aqua-subtext">
+                      Duración estimada:
+                      <strong id="servicioModalDuracion">-</strong>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  class="service-modal-detail"
+                  id="servicioModalDescripcion"
+                ></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn-aqua w-100 justify-content-center"
+              id="servicioModalAction"
+              href="./reservas.html"
+            >
+              Reservar servicio
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- CONTACTO SECTION -->
+    <section
+      id="contacto"
+      class="page-section-bg panel-contact-bg panel-contact-section"
+    >
+      <div class="container-aqua">
+        <div class="panel-contact-layout">
+          <div class="panel-contact-copy">
+            <h2 class="section-heading">Contacto</h2>
+            <p class="section-lead">
+              Agenda, consulta horarios o escríbenos directo por nuestros
+              canales oficiales.
+            </p>
+          </div>
+
+          <div class="panel-contact-strip">
+            <a
+              href="https://www.instagram.com/aquacar.3n/"
+              target="_blank"
+              rel="noreferrer"
+              class="contact-strip-item"
+            >
+              <i class="bi bi-instagram"></i>
+              <div>
+                <strong>Instagram</strong>
+                <span>@aquacar.3n</span>
+              </div>
+            </a>
+
+            <a
+              href="https://wa.me/56982820443"
+              target="_blank"
+              rel="noreferrer"
+              class="contact-strip-item"
+            >
+              <i class="bi bi-whatsapp"></i>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+56 9 8282 0443</span>
+              </div>
+            </a>
+
+            <div class="contact-strip-item">
+              <i class="bi bi-geo-alt"></i>
+              <div>
+                <strong>Dirección</strong>
+                <span>Rosas 322, Constitución</span>
+              </div>
+            </div>
+
+            <div class="contact-strip-item">
+              <i class="bi bi-clock"></i>
+              <div>
+                <strong>Horario</strong>
+                <span>Lunes a sábado, 9:00 a 19:00 hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="pie-pagina">
+      <p>
+        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        reservados.
+      </p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/panel.js"></script>

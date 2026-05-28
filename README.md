@@ -1,178 +1,265 @@
-# AquaCar
+# AquaCar 2.0
 
-Sistema web desarrollado como proyecto de título para la gestión de reservas, servicios y clientes de un lavado automotriz.
+AquaCar 2.0 es un sistema web premium para gestión de lavado automotriz. Permite registrar usuarios, administrar vehículos, crear reservas online, controlar servicios y operar un panel administrador con una interfaz moderna, responsive y orientada a producción.
 
-El proyecto busca digitalizar la administración de AquaCar, permitiendo optimizar el control de reservas, vehículos y servicios mediante una plataforma web funcional.
+## Características principales
 
----
+- Registro e inicio de sesión por roles
+- Gestión de vehículos por cliente
+- Reservas online con validación de disponibilidad
+- Cancelación y seguimiento de reservas
+- Panel administrador para control de reservas
+- Gestión completa de servicios
+- Estados de reserva administrables
+- Sistema premium responsive
+- Validaciones frontend y backend
+- Mensajes visuales tipo toast
+- Integración con MySQL en Railway y despliegue en Render
 
-# Tecnologías utilizadas
+## Tecnologías utilizadas
 
-## Frontend
-
-- HTML
-- CSS
-- JavaScript
-
-## Backend
-
+- HTML5
+- CSS3
+- JavaScript vanilla
+- Bootstrap 5 vía CDN
+- Bootstrap Icons vía CDN
 - Node.js
 - Express
-
-## Base de Datos
-
 - MySQL
+- mysql2
+- cors
+- dotenv
+- bcryptjs
 
-## Herramientas utilizadas
+## Arquitectura del sistema
 
-- Visual Studio Code
-- MySQL Workbench
-- Postman
-- GitHub
-- Render
-- Railway
+### Frontend
 
----
+La interfaz está construida con HTML, CSS y JavaScript vanilla. Está organizada en páginas públicas, páginas de cliente y páginas administrativas. El frontend consume la API del backend mediante `fetch` y muestra feedback visual con toasts premium reutilizables.
 
-# Arquitectura del sistema
+### Backend
 
-El sistema fue desarrollado utilizando una arquitectura cliente-servidor de tres capas:
+El backend está desarrollado con Node.js y Express. Expone una API REST bajo la ruta base `/api`, maneja autenticación básica por usuario/rol, valida datos y conecta con MySQL mediante `mysql2`.
 
-- Capa de presentación → Frontend desarrollado con HTML, CSS y JavaScript.
-- Capa lógica → Backend desarrollado con Node.js y Express.
-- Capa de datos → Base de datos MySQL.
+### API REST
 
-La comunicación entre frontend y backend se realiza mediante solicitudes HTTP y respuestas en formato JSON.
+Las rutas principales del sistema cubren:
 
----
+- usuarios y login
+- vehículos
+- servicios
+- reservas
+- consulta de clientes
 
-# Funcionalidades principales
+### Base de datos
 
-## Cliente
+La base de datos está alojada en MySQL en Railway y utiliza un modelo relacional con tablas principales para usuarios, roles, vehículos, servicios, reservas y catálogos auxiliares.
 
-- Registro de usuarios
-- Inicio de sesión
-- Registro de vehículos
-- Visualización de servicios
-- Creación de reservas
-- Visualización de reservas
-- Cancelación de reservas
+### Deploy
 
-## Administrador
+- Frontend en Render
+- Backend en Render
+- Base de datos MySQL en Railway
 
-- Gestión de servicios
-- Gestión de reservas
-- Cambio de estado de reservas
-- Visualización de clientes y vehículos
+## Estructura del proyecto
 
----
-
-# Validaciones implementadas
-
-- Validación de correos duplicados
-- Validación de patentes duplicadas
-- Validación de horarios ocupados
-- Validación de campos obligatorios
-- Contraseñas cifradas mediante bcryptjs
-
----
-
-# Estructura del proyecto
-
-```bash
-/frontend   → Interfaces del sistema
-/backend    → Servidor, rutas y lógica del sistema
-/database   → Script SQL, modelo relacional y documentación de base de datos
+```text
+AquaCar/
+├── README.md
+├── backend/
+│   ├── .env.example
+│   ├── db.js
+│   ├── index.js
+│   ├── package.json
+│   └── routes/
+│       ├── reservaRoutes.js
+│       ├── servicioRoutes.js
+│       ├── usuarioRoutes.js
+│       └── vehiculoRoutes.js
+├── database/
+│   └── script SQL del sistema
+└── frontend/
+    ├── index.html
+    ├── css/
+│   │   └── aquacar-premium.css
+    ├── images/
+    ├── js/
+    │   ├── admin.js
+    │   ├── auth.js
+    │   ├── clientes-vehiculos.js
+    │   ├── config.js
+    │   ├── index.js
+    │   ├── login.js
+    │   ├── mis-reservas.js
+    │   ├── panel.js
+    │   ├── registro.js
+    │   ├── reservas.js
+    │   ├── servicios-admin.js
+    │   └── vehiculos.js
+    └── pages/
+        ├── admin.html
+        ├── clientes-vehiculos.html
+        ├── login.html
+        ├── mis-reservas.html
+        ├── panel.html
+        ├── registro.html
+        ├── reservas.html
+        ├── servicios-admin.html
+        └── vehiculos.html
 ```
 
-# Base de datos AquaCar
+## Base de datos
 
-La carpeta `/database` contiene:
+El sistema usa un modelo relacional pensado para mantener integridad entre clientes, vehículos, servicios y reservas.
 
-- Script SQL de creación de la base de datos
-- Modelo relacional del sistema
-- Modelo entidad-relación (Chen)
-- Estructura de tablas y relaciones principales
+### Tablas principales
 
-La base de datos fue desarrollada utilizando MySQL y se encuentra estructurada bajo un modelo relacional normalizado hasta Tercera Forma Normal (3FN).
+- `ROL`
+- `USUARIO`
+- `VEHICULO`
+- `MARCA_VEHICULO`
+- `MODELO_VEHICULO`
+- `TIPO_VEHICULO`
+- `COLOR_VEHICULO`
+- `SERVICIO`
+- `RESERVA`
+- `ESTADO_RESERVA`
 
----
+### Relaciones principales
 
-# Instalación y ejecución local
+- `ROL` 1:N `USUARIO`
+- `USUARIO` 1:N `VEHICULO`
+- `MARCA_VEHICULO` 1:N `MODELO_VEHICULO`
+- `TIPO_VEHICULO` 1:N `MODELO_VEHICULO`
+- `MODELO_VEHICULO` 1:N `VEHICULO`
+- `COLOR_VEHICULO` 1:N `VEHICULO`
+- `USUARIO` 1:N `RESERVA`
+- `VEHICULO` 1:N `RESERVA`
+- `SERVICIO` 1:N `RESERVA`
+- `ESTADO_RESERVA` 1:N `RESERVA`
 
-## 1. Clonar repositorio
+### Observación sobre vehículos
 
-```bash
-git clone https://github.com/Isco-Lina/ProyectoAquaCar.git
-```
+La estructura actual de vehículos está normalizada mediante catálogos de marca, modelo, tipo y color. Esto permite mantener el frontend dinámico y evitar duplicación de datos al registrar vehículos y reservas.
 
-## 2. Importar base de datos
+## Variables de entorno
 
-Importar el archivo SQL ubicado en la carpeta `/database` utilizando MySQL Workbench.
-
-## 3. Configurar variables de entorno
-
-Crear archivo `.env` dentro de `/backend` con la configuración correspondiente:
+Crear un archivo `.env` en `backend/` con esta estructura:
 
 ```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=tu_password
-DB_NAME=bd_aquacar
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+PORT=
+```
+
+Ejemplo de configuración para desarrollo o producción:
+
+```env
+DB_HOST=tu-host-de-mysql
+DB_PORT=3306
+DB_USER=tu-usuario
+DB_PASSWORD=tu-password
+DB_NAME=tu-base-de-datos
 PORT=3000
 ```
 
-## 4. Instalar dependencias
+## Instalación local
+
+### 1. Clonar el proyecto
 
 ```bash
+git clone <url-del-repositorio>
+cd AquaCar
+```
+
+### 2. Instalar dependencias del backend
+
+```bash
+cd backend
 npm install
 ```
 
-## 5. Ejecutar backend
+### 3. Configurar variables de entorno
+
+Crear `backend/.env` con los datos de tu instancia MySQL.
+
+### 4. Cargar la base de datos
+
+Importar el script SQL del proyecto en tu base de datos MySQL local o en Railway.
+
+### 5. Iniciar el backend
 
 ```bash
 npm start
 ```
 
----
+En desarrollo también puedes usar:
 
-# Sistema desplegado
+```bash
+npm run dev
+```
 
-## Frontend
+### 6. Abrir el frontend
 
-https://aquacar-frontend.onrender.com
+Abrir `frontend/index.html` con un servidor estático, por ejemplo Live Server en VS Code, o desplegarlo directamente en Render.
 
-## Backend/API
+## Deploy
 
-https://aquacar-backen.onrender.com
+### Frontend en Render
 
----
+- Publicar la carpeta `frontend/` como sitio estático
+- Verificar que las rutas relativas a `css`, `js`, `images` y `pages` se mantengan intactas
+- Confirmar que el frontend apunte a la URL real del backend desplegado
 
-# Credenciales de prueba
+### Backend en Render
 
-## Perfil administrador
+- Crear un servicio web para `backend/`
+- Definir las variables de entorno en Render
+- Verificar que el servidor escuche en `process.env.PORT`
+- Exponer la API bajo `/api`
 
-Correo: admin@aquacar.cl  
-Contraseña: 123456
+### Base de datos en Railway
 
-## Perfil cliente
+- Crear la instancia MySQL en Railway
+- Copiar credenciales al `.env` local o a las variables del servicio en Render
+- Importar el esquema SQL del sistema
+- Validar la conectividad desde el backend
 
-Nombre: Juan  
-Apellido: Pérez  
-Correo: cliente@aquacar.cl  
-Contraseña: cliente123
+## Funcionalidades implementadas
 
----
+- Registro de usuarios clientes
+- Inicio de sesión con roles
+- Gestión de vehículos por usuario
+- Catálogo dinámico de marcas, modelos y colores
+- Reservas con selección de fecha y horario
+- Validación de disponibilidad antes de reservar
+- Consulta de reservas por cliente
+- Cancelación de reservas por cliente
+- Panel administrador con listado de reservas
+- Cambio de estado de reservas
+- Eliminación de reservas desde administración
+- Gestión de servicios: crear, editar, activar, desactivar y eliminar
+- Vista de clientes con sus vehículos asociados
+- Interfaz premium con modales y toasts visuales
 
-# Repositorio
+## Mejoras implementadas en AquaCar 2.0
 
-https://github.com/Isco-Lina/ProyectoAquaCar
+- Diseño premium oscuro con estilo automotriz
+- Navbar moderna y consistente en todo el sistema
+- Sistema relacional de vehículos más ordenado
+- Reservas con mejor validación y control de horarios
+- Administración más clara para reservas y servicios
+- Mensajes visuales tipo toast reutilizables
+- Mejor experiencia responsive en móvil y escritorio
+- Refuerzo de validaciones en frontend y backend
 
----
+## Estado actual del proyecto
 
-# Autor
+El sistema se encuentra operativo y listo para seguir con ajustes finos antes de producción. La base funcional está implementada y el proyecto está orientado a su despliegue en Render y Railway con una estructura estable.
 
-Francisco Javier Antonio Molina Carrillo
+## Autor
 
-Proyecto de Título — Ingeniería en Informática  
-2026
+Francisco Molina

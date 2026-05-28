@@ -3,83 +3,211 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reservas - AquaCar</title>
-    <link rel="stylesheet" href="../css/reservas.css" />
+    <title>Nueva Reserva - AquaCar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="../css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="contenedor">
-      <section class="hero">
-        <h1>Ingresa tu reserva</h1>
-        <p>
-          Selecciona tu vehículo, el servicio que deseas y agenda tu atención en
-          AquaCar.
-        </p>
+  <body class="page-bg reservas-bg reservas-page">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua">
+        <a class="navbar-brand aqua-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#clienteNavbar"
+          aria-controls="clienteNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="clienteNavbar">
+          <div class="aqua-nav-actions ms-lg-auto">
+            <span class="aqua-user-online">
+              <i class="bi bi-person-circle"></i>
+              <strong id="usuario_logueado">Usuario</strong>
+            </span>
+            <a href="./panel.html" class="aqua-nav-link">
+              <i class="bi bi-arrow-left"></i> Volver al panel
+            </a>
+            <a href="./reservas.html" class="aqua-nav-link active">
+              Reservar ahora
+            </a>
+            <button
+              id="btnVerMisReservas"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              Mis reservas
+            </button>
+            <a href="./vehiculos.html" class="aqua-nav-link"> Mis vehículos </a>
+            <button
+              id="btnCerrarSesion"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        <div class="usuario-box">
-          <span>Sesión iniciada como:</span>
-          <strong id="usuario_logueado"></strong>
+    <!-- HERO + FORMULARIO -->
+    <section class="page-section-bg client-hero reservas-hero-bg">
+      <div class="container-aqua hero-stack">
+        <div class="hero-copy">
+          <h1>Nueva Reserva</h1>
+          <p>
+            Selecciona tu vehículo, elige el servicio y agenda un horario
+            disponible en una sola vista.
+          </p>
         </div>
 
-        <div class="acciones-superiores">
-          <a href="./panel.html" class="btn btn-secundario">Volver al panel</a>
-          <button
-            id="btnVerMisReservas"
-            class="btn btn-secundario"
-            type="button"
-          >
-            Ver mis reservas
-          </button>
-          <button id="btnCerrarSesion" class="btn btn-cerrar">
-            Cerrar sesión
-          </button>
-        </div>
-      </section>
+        <div class="row g-4 justify-content-center">
+          <div class="col-12 reserva-form-wrapper">
+            <div class="card-premium h-100">
+              <h2
+                class="section-heading"
+                style="font-size: 1.8rem; margin-bottom: 18px"
+              >
+                <i
+                  class="bi bi-calendar-plus"
+                  style="color: var(--aqua-green-water); font-size: 1.15rem"
+                ></i>
+                Crear Reserva
+              </h2>
 
-      <section class="formulario-card">
-        <h2>Nueva reserva</h2>
+              <form id="reservaForm" class="aqua-form">
+                <div class="mb-4">
+                  <label
+                    for="id_vehiculo"
+                    class="form-label"
+                    style="color: var(--aqua-text-light)"
+                  >
+                    <i class="bi bi-car-front"></i> Vehículo
+                  </label>
+                  <select
+                    id="id_vehiculo"
+                    class="form-select form-select-aqua aqua-input"
+                    required
+                  >
+                    <option value="">Seleccione un vehículo</option>
+                  </select>
+                </div>
 
-        <form id="reservaForm">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="id_vehiculo">Vehículo</label>
-              <select id="id_vehiculo" required>
-                <option value="">Seleccione un vehículo</option>
-              </select>
-            </div>
+                <div class="mb-4">
+                  <label
+                    for="id_servicio"
+                    class="form-label"
+                    style="color: var(--aqua-text-light)"
+                  >
+                    <i class="bi bi-droplet"></i> Servicio
+                  </label>
+                  <select
+                    id="id_servicio"
+                    class="form-select form-select-aqua aqua-input"
+                    required
+                  >
+                    <option value="">Seleccione un servicio</option>
+                  </select>
+                </div>
 
-            <div class="form-group">
-              <label for="id_servicio">Servicio</label>
-              <select id="id_servicio" required>
-                <option value="">Seleccione un servicio</option>
-              </select>
-            </div>
+                <div class="mb-4">
+                  <input type="hidden" id="fecha_reserva" required />
+                  <input type="hidden" id="hora_reserva" required />
 
-            <div class="form-group">
-              <label for="fecha_reserva">Fecha reserva</label>
-              <input type="date" id="fecha_reserva" required />
-            </div>
+                  <div class="agenda-aquacar">
+                    <div class="agenda-titulo">
+                      <i class="bi bi-calendar-check"></i>
+                      Selecciona fecha y hora de tu servicio
+                    </div>
 
-            <div class="form-group">
-              <label for="hora_reserva">Hora reserva</label>
-              <input type="time" id="hora_reserva" required />
-            </div>
+                    <div class="agenda-meses">
+                      <span id="mesActualAgenda">Mayo</span>
+                    </div>
 
-            <div class="form-group full-width">
-              <label for="observaciones">Observaciones</label>
-              <textarea
-                id="observaciones"
-                rows="4"
-                placeholder="Escribe aquí algún detalle adicional"
-              ></textarea>
+                    <div id="diasDisponibles" class="agenda-dias"></div>
+
+                    <div class="agenda-separador">
+                      <span>Mañana</span>
+                    </div>
+                    <div id="horariosManana" class="agenda-horas"></div>
+
+                    <div class="agenda-separador">
+                      <span>Tarde</span>
+                    </div>
+                    <div id="horariosTarde" class="agenda-horas"></div>
+
+                    <div id="horariosDisponibles" class="agenda-mensaje">
+                      Selecciona un servicio y una fecha para ver horarios
+                      disponibles.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label
+                    for="observaciones"
+                    class="form-label"
+                    style="color: var(--aqua-text-light)"
+                  >
+                    <i class="bi bi-chat-dots"></i> Observaciones (opcional)
+                  </label>
+                  <textarea
+                    id="observaciones"
+                    class="form-control form-control-aqua aqua-input"
+                    rows="4"
+                    placeholder="Escribe detalles adicionales sobre tu vehículo o solicitud especial..."
+                    style="resize: vertical; min-height: 120px"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn-aqua aqua-btn w-100"
+                  style="padding: 12px; margin-top: 20px; font-weight: 600"
+                >
+                  <i class="bi bi-check-circle"></i> Registrar Reserva
+                </button>
+              </form>
+
+              <div id="mensaje" class="message" style="margin-top: 20px"></div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <button type="submit" class="btn-principal">Registrar reserva</button>
-        </form>
+    <!-- FOOTER -->
+    <footer id="pie-pagina">
+      <p>
+        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        reservados.
+      </p>
+    </footer>
 
-        <div id="mensaje" class="message"></div>
-      </section>
-    </div>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/reservas.js"></script>

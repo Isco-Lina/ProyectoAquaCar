@@ -23,6 +23,13 @@ document.getElementById("btnCerrarSesion").addEventListener("click", () => {
   cerrarSesion();
 });
 
+const btnCerrarSesionPanel = document.getElementById("btnCerrarSesionPanel");
+if (btnCerrarSesionPanel) {
+  btnCerrarSesionPanel.addEventListener("click", () => {
+    cerrarSesion();
+  });
+}
+
 function obtenerOpcionesEstado(nombreEstadoActual) {
   const estados = [
     { id: 1, nombre: "Pendiente" },
@@ -121,64 +128,50 @@ function renderizarReservas(reservas) {
     return;
   }
 
-  listaReservas.innerHTML = "";
-
-  reservas.forEach((reserva) => {
-    const card = document.createElement("div");
-    card.className = "reserva-item";
-
-    card.innerHTML = `
-      <h3>${reserva.nombre_servicio}</h3>
-
-      <div class="cliente-box">
-        <p><strong>Cliente:</strong> ${reserva.nombre} ${reserva.apellido}</p>
-        <p><strong>Correo:</strong> ${reserva.correo}</p>
-        <p><strong>Teléfono:</strong> ${reserva.telefono || "Sin teléfono"}</p>
-      </div>
-
-      <div class="info-grid">
-        <p><strong>Vehículo:</strong> ${reserva.marca} ${reserva.modelo}</p>
-        <p><strong>Patente:</strong> ${reserva.patente}</p>
-        <p><strong>Tipo:</strong> ${reserva.tipo_vehiculo || "No informado"}</p>
-        <p><strong>Color:</strong> ${reserva.color || "No informado"}</p>
-        <p><strong>Fecha:</strong> ${formatearFecha(reserva.fecha_reserva)}</p>
-        <p><strong>Hora:</strong> ${formatearHora(reserva.hora_reserva)}</p>
-      </div>
-
-      <div class="estado-box">
-        <span class="estado-label">Estado actual:</span>
-        <span class="estado-badge ${obtenerClaseEstado(reserva.nombre_estado)}">
-          ${reserva.nombre_estado}
-        </span>
-      </div>
-
-      <p class="observacion-texto">
-        <strong>Observaciones:</strong> ${reserva.observaciones || "Sin observaciones"}
-      </p>
-
-      <div class="acciones-card">
-        <label for="estado_${reserva.id_reserva}" class="label-select">
-          Cambiar estado
-        </label>
-
-        <div class="select-wrapper">
-          <select id="estado_${reserva.id_reserva}" class="select-estado">
-            ${obtenerOpcionesEstado(reserva.nombre_estado)}
-          </select>
+  listaReservas.innerHTML = reservas
+    .map(
+      (reserva) => `
+    <article class="admin-reserva-card service-admin-card h-100">
+        <div class="aqua-card-topline"></div>
+        <div class="admin-reserva-head">
+          <div class="admin-reserva-icon" style="background: linear-gradient(135deg, var(--aqua-cyan-bright), var(--aqua-green-water));">
+            <i class="bi bi-calendar2-event"></i>
+          </div>
+          <div class="flex-grow-1">
+            <h3 class="admin-reserva-title mb-1">${reserva.nombre_servicio}</h3>
+            <span class="badge-estado ${obtenerClaseEstado(reserva.nombre_estado)}">
+                ${reserva.nombre_estado}
+            </span>
+          </div>
         </div>
-
-        <button class="btn-estado" data-action="guardar-estado" data-id-reserva="${reserva.id_reserva}">
-          Guardar estado
-        </button>
-
-        <button class="btn-eliminar" data-action="eliminar-reserva" data-id-reserva="${reserva.id_reserva}">
-          Eliminar reserva
-        </button>
-      </div>
-    `;
-
-    listaReservas.appendChild(card);
-  });
+        <div class="admin-reserva-body">
+          <div class="admin-reserva-meta">
+            <div class="item-info"><i class="bi bi-person"></i><strong>Cliente:</strong> ${reserva.nombre} ${reserva.apellido}</div>
+            <div class="item-info"><i class="bi bi-car-front"></i><strong>Vehículo:</strong> ${reserva.marca} ${reserva.modelo}</div>
+            <div class="item-info"><i class="bi bi-receipt"></i><strong>Patente:</strong> <code>${reserva.patente}</code></div>
+            <div class="item-info"><i class="bi bi-calendar"></i><strong>Fecha:</strong> ${formatearFecha(reserva.fecha_reserva)} ${formatearHora(reserva.hora_reserva)}</div>
+            ${reserva.observaciones ? `<div class="item-info"><i class="bi bi-chat-dots"></i><strong>Obs:</strong> ${reserva.observaciones}</div>` : ""}
+          </div>
+          <div class="admin-reserva-actions">
+            <select id="estado_${reserva.id_reserva}" class="admin-status-select" aria-label="Cambiar estado">
+              ${obtenerOpcionesEstado(reserva.nombre_estado)}
+            </select>
+            <div class="admin-action-buttons">
+              <button class="admin-action-btn admin-action-save" data-action="guardar-estado" data-id-reserva="${reserva.id_reserva}" title="Guardar estado">
+                <i class="bi bi-check-lg"></i>
+                <span>Guardar</span>
+              </button>
+              <button class="admin-action-btn admin-action-danger" data-action="eliminar-reserva" data-id-reserva="${reserva.id_reserva}" title="Eliminar reserva">
+                <i class="bi bi-trash"></i>
+                <span>Eliminar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `,
+    )
+    .join("");
 }
 
 function filtrarReservas() {
@@ -224,14 +217,17 @@ async function eliminarReserva(idReserva) {
     if (response.ok) {
       mensaje.style.color = "#00ff88";
       mensaje.textContent = data.mensaje || "Reserva eliminada correctamente";
+      mostrarToast("Reserva eliminada correctamente.", "success");
       cargarReservas();
     } else {
       mensaje.style.color = "#ff6b6b";
-      mensaje.textContent = data.mensaje || "No se pudo eliminar la reserva";
+      mensaje.textContent = data.mensaje || "No se pudo actualizar la reserva.";
+      mostrarToast("No se pudo actualizar la reserva.", "error");
     }
   } catch (error) {
     mensaje.style.color = "#ff6b6b";
-    mensaje.textContent = "Error al conectar con el servidor";
+    mensaje.textContent = "No se pudo actualizar la reserva.";
+    mostrarToast("No se pudo actualizar la reserva.", "error");
   }
 }
 
@@ -257,15 +253,18 @@ async function guardarEstado(idReserva) {
 
     if (response.ok) {
       mensaje.style.color = "#00ff88";
-      mensaje.textContent = "Estado actualizado correctamente";
+      mensaje.textContent = "Estado de reserva actualizado correctamente.";
+      mostrarToast("Estado de reserva actualizado correctamente.", "success");
       cargarReservas();
     } else {
       mensaje.style.color = "#ff6b6b";
-      mensaje.textContent = data.mensaje || "No se pudo actualizar el estado";
+      mensaje.textContent = data.mensaje || "No se pudo actualizar la reserva.";
+      mostrarToast("No se pudo actualizar la reserva.", "error");
     }
   } catch (error) {
     mensaje.style.color = "#ff6b6b";
-    mensaje.textContent = "Error al actualizar estado";
+    mensaje.textContent = "No se pudo actualizar la reserva.";
+    mostrarToast("No se pudo actualizar la reserva.", "error");
   }
 }
 

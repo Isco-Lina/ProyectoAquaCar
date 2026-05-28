@@ -4,40 +4,208 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis Reservas - AquaCar</title>
-    <link rel="stylesheet" href="../css/mis-reservas.css" />
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- AquaCar Premium CSS -->
+    <link rel="stylesheet" href="../css/aquacar-premium.css" />
   </head>
-  <body>
-    <div class="contenedor">
-      <section class="hero">
-        <h1>Mis Reservas</h1>
-        <p>
-          Revisa el estado de tus reservas, horarios programados y los detalles
-          de cada atención en AquaCar.
-        </p>
+  <body class="page-bg mis-reservas-page client-bg">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
+      <div class="container-aqua">
+        <a class="navbar-brand aqua-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo AquaCar"
+            class="aqua-brand-logo"
+          />
+          <span class="aqua-brand-text">AquaCar</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#clienteNavbar"
+          aria-controls="clienteNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="clienteNavbar">
+          <div class="aqua-nav-actions ms-lg-auto">
+            <span class="aqua-user-online">
+              <i class="bi bi-person-circle"></i>
+              <strong id="usuario_logueado">Usuario</strong>
+            </span>
+            <a href="./panel.html" class="aqua-nav-link">
+              <i class="bi bi-arrow-left"></i> Volver al panel
+            </a>
+            <a href="./reservas.html" class="aqua-nav-link"> Reservar ahora </a>
+            <button
+              id="btnVerMisReservas"
+              class="aqua-nav-link aqua-nav-link-button active"
+              type="button"
+            >
+              Mis reservas
+            </button>
+            <a href="./vehiculos.html" class="aqua-nav-link"> Mis vehículos </a>
+            <button
+              id="btnCerrarSesion"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        <div class="usuario-box">
-          <span>Sesión iniciada como:</span>
-          <strong id="usuario_logueado"></strong>
+    <!-- HERO + LISTADO -->
+    <section class="page-section-bg client-hero mis-reservas-bg">
+      <div class="container-aqua hero-stack">
+        <div class="hero-copy">
+          <h1>Mis Reservas</h1>
+          <p>
+            Revisa el estado, la fecha y los detalles de todas tus reservas
+            programadas desde una vista premium.
+          </p>
         </div>
 
-        <div class="acciones-superiores">
-          <a href="./panel.html" class="btn btn-secundario">Volver al panel</a>
-          <a href="./reservas.html" class="btn btn-secundario">Reservar hora</a>
-          <button id="btnCerrarSesion" class="btn btn-cerrar">
-            Cerrar sesión
-          </button>
-        </div>
-      </section>
+        <div class="card-premium">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3"
+          >
+            <div>
+              <h2
+                class="section-heading"
+                style="font-size: 1.8rem; margin-bottom: 8px"
+              >
+                Listado de reservas
+              </h2>
+              <p class="section-lead">
+                Tu historial queda ordenado en tarjetas claras y fáciles de
+                revisar.
+              </p>
+            </div>
+            <div
+              id="mensaje"
+              class="message"
+              style="min-width: 240px; margin: 0"
+            ></div>
+          </div>
 
-      <section class="listado-card">
-        <h2>Listado de reservas</h2>
-        <div id="mensaje" class="message"></div>
-        <div id="listaReservas" class="lista-grid">
-          <p class="sin-datos">Cargando reservas...</p>
+          <div id="listaReservas" class="row g-4" style="min-height: 300px">
+            <div class="col-12">
+              <p
+                style="
+                  color: var(--aqua-text-gray);
+                  text-align: center;
+                  padding: 40px 20px;
+                "
+              >
+                <i class="bi bi-hourglass-split"></i> Cargando reservas...
+              </p>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
+    <!-- INFO SECTION -->
+    <section class="page-section-bg estado-reservas-bg section-gap-tight">
+      <div class="container-aqua">
+        <div class="hero-copy mb-4 text-center">
+          <h2 class="section-heading">Estados de reserva</h2>
+          <p class="section-lead">
+            Los estados están resumidos para entender rápidamente el avance de
+            cada reserva.
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div
+              class="card-premium h-100 text-center"
+              style="border-left: 4px solid var(--aqua-yellow-accent)"
+            >
+              <div
+                style="
+                  font-size: 2rem;
+                  color: var(--aqua-yellow-accent);
+                  margin-bottom: 10px;
+                "
+              >
+                <i class="bi bi-clock"></i>
+              </div>
+              <h5 style="color: var(--aqua-text-light)">Pendiente</h5>
+              <p style="color: var(--aqua-text-gray); font-size: 0.9rem">
+                En espera de confirmación
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div
+              class="card-premium h-100 text-center"
+              style="border-left: 4px solid var(--aqua-cyan-bright)"
+            >
+              <div
+                style="
+                  font-size: 2rem;
+                  color: var(--aqua-cyan-bright);
+                  margin-bottom: 10px;
+                "
+              >
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <h5 style="color: var(--aqua-text-light)">Confirmada</h5>
+              <p style="color: var(--aqua-text-gray); font-size: 0.9rem">
+                Tu reserva está confirmada
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div
+              class="card-premium h-100 text-center"
+              style="border-left: 4px solid var(--aqua-green-water)"
+            >
+              <div
+                style="
+                  font-size: 2rem;
+                  color: var(--aqua-green-water);
+                  margin-bottom: 10px;
+                "
+              >
+                <i class="bi bi-check2-all"></i>
+              </div>
+              <h5 style="color: var(--aqua-text-light)">Completada</h5>
+              <p style="color: var(--aqua-text-gray); font-size: 0.9rem">
+                Servicio finalizado
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="pie-pagina">
+      <p>
+        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        reservados.
+      </p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/mis-reservas.js"></script>
