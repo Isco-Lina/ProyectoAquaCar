@@ -20,18 +20,30 @@
   <body class="home-page page-bg">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
-      <div class="container-aqua aqua-navbar">
+      <div class="container-aqua">
         <a class="navbar-brand aqua-brand" href="./index.html">
           <img
             src="./images/logo.png"
             alt="Logo AquaCar"
             class="aqua-brand-logo"
           />
-          <span class="aqua-brand-text">AquaCar</span>
         </a>
-        <div class="aqua-nav-actions ms-auto">
-          <a href="pages/login.html" class="aqua-nav-link">Iniciar sesión</a>
-          <a href="pages/registro.html" class="aqua-nav-link">Registrarse</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#homeNavbar"
+          aria-controls="homeNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="homeNavbar">
+          <div class="aqua-nav-actions ms-auto">
+            <a href="pages/login.html" class="aqua-nav-link">Iniciar sesión</a>
+            <a href="pages/registro.html" class="aqua-nav-link">Registrarse</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -40,7 +52,7 @@
     <section class="hero hero-home">
       <div class="hero-content hero-glass">
         <p class="hero-kicker">
-          <i class="bi bi-stars"></i> Detailing premium para tu vehículo
+          <i class="bi bi-stars"></i> Detailing para tu vehículo
         </p>
         <h1>Lavado automotriz premium con estilo real</h1>
         <p>
@@ -309,7 +321,7 @@
           <div class="modal-header">
             <div>
               <p class="text-uppercase text-info small mb-1">
-                <i class="bi bi-droplet-fill"></i> Servicio destacado
+                Servicio destacado
               </p>
               <h5 class="modal-title" id="servicioModalLabel">Servicio</h5>
             </div>
@@ -334,19 +346,6 @@
               </div>
               <div class="col-lg-6">
                 <div class="d-flex align-items-center gap-3 mb-3">
-                  <div
-                    class="vehicle-icon"
-                    id="servicioModalIcon"
-                    style="
-                      background: linear-gradient(
-                        135deg,
-                        var(--aqua-cyan-bright),
-                        var(--aqua-green-water)
-                      );
-                    "
-                  >
-                    <i class="bi bi-water"></i>
-                  </div>
                   <div>
                     <div class="service-modal-price" id="servicioModalPrecio">
                       $0

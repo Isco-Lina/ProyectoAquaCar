@@ -3584,17 +3584,17 @@ body.servicios-admin-page {
 }
 
 .panel-bg {
-  background-image: url("../images/fondos/ferrari-4.jpg");
+  background-image: url("../images/fondos/ferrari.jpg");
   background-position: center center;
 }
 
 .panel-services-bg {
-  background-image: url("../images/fondos/audi.jpg");
+  background-image: url("../images/fondos-aquacar/fondo-aquacar-4.jpeg");
   background-position: center 35%;
 }
 
 .panel-contact-bg {
-  background-image: url("../images/fondos/ferrari-3.jpg");
+  background-image: url("../images/fondos-aquacar/fondo-aquacar-6.jpeg");
   background-position: center 25%;
 }
 
@@ -3620,12 +3620,12 @@ body.servicios-admin-page {
 }
 
 .mis-reservas-bg {
-  background-image: url("../images/fondos/ferrari-2.jpg");
+  background-image: url("../images/fondos-aquacar/fondo-aquacar-11.jpeg");
   background-position: center 30%;
 }
 
 .estado-reservas-bg {
-  background-image: url("../images/fondos/fondo-4.jpg");
+  background-image: url("../images/fondos-aquacar/fondo-aquacar-7.jpeg");
   background-position: center 45%;
 }
 
@@ -4157,7 +4157,7 @@ body.servicios-admin-page {
 .hero-home {
   background:
     linear-gradient(180deg, rgba(4, 10, 18, 0.28), rgba(4, 10, 18, 0.82)),
-    url("../images/fondos/ferrari.jpg") center center / cover no-repeat !important;
+    url("../images/fondos-aquacar/fondo-aquacar-4.jpeg") center center / cover no-repeat !important;
 }
 
 .hero-glass {
@@ -4189,19 +4189,19 @@ body.servicios-admin-page {
 .section-servicios {
   background-image:
     linear-gradient(180deg, rgba(4, 10, 18, 0.78), rgba(4, 10, 18, 0.92)),
-    url("../images/fondos/audi.jpg");
+    url("../images/fondos-aquacar/fondo-aquacar-6.jpeg");
 }
 
 .section-experiencia {
   background-image:
     linear-gradient(180deg, rgba(4, 10, 18, 0.8), rgba(4, 10, 18, 0.94)),
-    url("../images/fondos/ferrari-2.jpg");
+    url("../images/fondos-aquacar/fondo-aquacar-11.jpeg");
 }
 
 .section-contacto-final {
   background-image:
     linear-gradient(180deg, rgba(4, 10, 18, 0.82), rgba(4, 10, 18, 0.96)),
-    url("../images/fondos/ferrari-3.jpg");
+    url("../images/fondos-aquacar/fondo-aquacar-1.png") center center / cover no-repeat;
 }
 
 .glass-card {
@@ -4366,14 +4366,14 @@ body.login-page .auth-stage,
 body.auth-bg.login-page .auth-stage {
   background:
     linear-gradient(180deg, rgba(4, 10, 18, 0.76), rgba(4, 10, 18, 0.94)),
-    url("../images/fondos/ferrari-2.jpg") center center / cover no-repeat !important;
+    url("../images/fondos-aquacar/fondo-aquacar-4.jpeg") center center / cover no-repeat !important;
 }
 
 body.register-page .auth-stage,
 body.auth-bg.register-page .auth-stage {
   background:
     linear-gradient(180deg, rgba(4, 10, 18, 0.76), rgba(4, 10, 18, 0.94)),
-    url("../images/fondos/ferrari-3.jpg") center center / cover no-repeat !important;
+    url("../images/fondos-aquacar/fondo-aquacar-1.png") center center / cover no-repeat !important;
 }
 
 body.reservas-page .page-stage.reservas-stage,
@@ -4643,5 +4643,512 @@ body.servicios-admin-page .page-stage.admin-stage {
     min-width: 0;
     max-width: none;
     width: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar .container-aqua,
+  .aqua-navbar {
+    align-items: flex-start;
+  }
+
+  .aqua-navbar .navbar-collapse {
+    width: 100%;
+    flex-basis: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid rgba(0, 229, 255, 0.14);
+    border-radius: 20px;
+    background: rgba(7, 16, 20, 0.94);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+  }
+
+  .aqua-navbar .navbar-collapse.collapse:not(.show) {
+    display: none;
+  }
+
+  .aqua-navbar .navbar-toggler {
+    margin-left: auto;
+  }
+
+  .aqua-nav-actions,
+  .nav-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .aqua-user-online {
+    width: 100%;
+    justify-content: center;
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    border-radius: 16px;
+    padding: 12px 14px;
+    background: rgba(0, 229, 255, 0.05);
+  }
+
+  .aqua-nav-link,
+  .aqua-nav-btn,
+  .nav-actions .nav-link {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    background: rgba(0, 229, 255, 0.04);
+  }
+
+  .aqua-nav-link::after,
+  .aqua-nav-btn::after,
+  .nav-actions .nav-link::after {
+    display: none;
+  }
+
+  .aqua-nav-link-button {
+    min-height: 48px;
+  }
+}
+
+  @media (max-width: 768px) {
+    .aqua-brand-text,
+    .auth-brand .aqua-brand-text {
+      display: none !important;
+    }
+
+    .aqua-brand-logo,
+    .auth-brand .aqua-brand-logo,
+    .aqua-navbar .aqua-brand-logo {
+      height: 32px;
+    }
+
+    .aqua-brand,
+    .auth-brand {
+      gap: 0;
+    }
+
+    .aqua-navbar {
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+
+    .container-aqua {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    section,
+    .panel-contact-section,
+    .admin-dashboard-section,
+    .admin-summary-section,
+    .admin-reservas-section,
+    .servicios-admin-section {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .card-premium,
+    .aqua-card,
+    .reservation-card,
+    .vehicle-card,
+    .client-card,
+    .service-admin-card,
+    .panel-action-card,
+    .stat-card {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .quick-actions-grid,
+    .panel-quick-actions-grid,
+    .admin-actions-grid,
+    .contact-grid,
+    .panel-contact-grid,
+    .aqua-grid-cards,
+    .admin-stats-grid,
+    .admin-reservas-grid,
+    .grid-services,
+    .grid-items {
+      grid-template-columns: 1fr !important;
+    }
+
+    .panel-quick-actions-grid,
+    .admin-actions-grid {
+      gap: 16px;
+    }
+
+    .quick-action-card,
+    .panel-action-card,
+    .admin-service-form-card,
+    .form-container {
+      padding: 20px;
+    }
+
+    .quick-action-card .action-icon,
+    .panel-action-card .action-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      margin-bottom: 14px;
+    }
+
+    .hero-copy h1 {
+      font-size: 2rem;
+      line-height: 1.08;
+    }
+
+    .hero-copy p,
+    .section-lead,
+    .panel-action-text,
+    .service-card-text,
+    .service-modal-detail,
+    .cliente-email,
+    .cliente-phone,
+    .service-admin-card .item-info,
+    .service-admin-card .service-subtitle,
+    .admin-client-modal-email,
+    .admin-client-modal-name {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .panel-quick-actions-grid .quick-action-card,
+    .admin-actions-grid .panel-action-card {
+      min-height: 0;
+    }
+
+    .mis-reservas-page .card-premium,
+    .vehiculos-page .card-premium,
+    .panel-page .card-premium,
+    .login-page .form-container,
+    .register-page .form-container,
+    .admin-page .card-premium,
+    .clientes-page .card-premium,
+    .servicios-admin-page .card-premium {
+      border-radius: 18px;
+    }
+
+    .login-page .auth-stage,
+    .register-page .auth-stage {
+      min-height: auto !important;
+      padding-top: 24px !important;
+      padding-bottom: 24px !important;
+    }
+
+    .login-page .form-container,
+    .register-page .form-container {
+      padding: 22px 18px;
+      max-width: 100%;
+    }
+
+    .login-page .auth-brand,
+    .register-page .auth-brand {
+      margin-bottom: 20px;
+    }
+
+    .panel-page .hero-stack,
+    .mis-reservas-page .hero-stack,
+    .vehiculos-page .hero-stack,
+    .admin-page .hero-stack {
+      gap: 18px;
+    }
+
+    .panel-page .panel-quick-actions-grid,
+    .admin-page .admin-actions-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .admin-filters-panel {
+      padding: 16px;
+    }
+
+    .admin-filter-group {
+      gap: 6px;
+    }
+
+    .admin-filter-group .aqua-input,
+    .admin-filter-group .form-select-aqua {
+      min-height: 48px;
+      font-size: 0.98rem;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .cliente-card-compact,
+    .reserva-card-compact,
+    .service-admin-card,
+    .admin-reserva-card {
+      min-width: 0;
+    }
+
+    .cliente-card-header {
+      align-items: flex-start;
+    }
+
+    .cliente-name,
+    .cliente-email,
+    .cliente-phone,
+    .admin-client-modal-email {
+      overflow-wrap: anywhere;
+    }
+
+    .cliente-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .service-admin-card .service-subtitle,
+    .service-admin-card .item-info,
+    .service-admin-card .service-title {
+      display: block;
+    }
+
+    .service-admin-card .service-card-meta,
+    .service-admin-card .service-card-footer,
+    .reservation-card-footer,
+    .vehicle-card-footer,
+    .client-card-footer {
+      gap: 12px;
+    }
+
+    .service-modal .modal-dialog,
+    .aqua-modal .modal-dialog,
+    .admin-client-modal {
+      width: calc(100% - 16px);
+      margin: 0.5rem auto;
+    }
+
+    .service-modal .modal-body,
+    .aqua-modal .modal-body,
+    .admin-client-modal .modal-body {
+      padding: 18px;
+    }
+
+    .service-modal-image,
+    .service-modal-figure img {
+      height: 220px;
+    }
+
+    .service-modal .row,
+    .service-modal .align-items-center {
+      align-items: stretch !important;
+    }
+
+    .service-modal-price {
+      font-size: 1.7rem;
+    }
+
+    .service-modal-detail {
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .message,
+    .admin-message,
+    .admin-service-message {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container-aqua {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .hero-copy h1 {
+      font-size: 1.8rem;
+    }
+
+    .section-heading,
+    .auth-title {
+      font-size: 1.45rem;
+    }
+
+    .aqua-nav-link,
+    .aqua-nav-btn,
+    .nav-actions .nav-link {
+      padding: 11px 14px;
+      font-size: 0.96rem;
+    }
+
+    .aqua-user-online {
+      padding: 11px 12px;
+      font-size: 0.95rem;
+    }
+
+    .quick-action-card,
+    .panel-action-card,
+    .card-premium,
+    .aqua-card,
+    .stat-card,
+    .admin-filters-panel,
+    .admin-service-form-card,
+    .form-container {
+      padding: 18px;
+    }
+
+    .admin-stats-grid > [class*="col-"] {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+
+    .admin-stats-grid {
+      justify-content: center;
+    }
+
+    .admin-stats-grid > [class*="col-"] {
+      display: flex;
+      justify-content: center;
+    }
+
+    .admin-stats-grid .stat-card {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .admin-stats-grid .stat-icon {
+      width: 56px;
+      height: 56px;
+      font-size: 1.45rem;
+    }
+
+    .admin-stats-grid .stat-content strong {
+      font-size: 1.4rem;
+    }
+
+    .telefono-group {
+      gap: 10px;
+    }
+
+    .telefono-prefix {
+      min-width: 80px;
+      padding: 0 12px;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .container-aqua {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .hero-copy h1 {
+      font-size: 1.6rem;
+    }
+
+    .section-heading,
+    .auth-title {
+      font-size: 1.3rem;
+    }
+
+    .admin-stats-grid > [class*="col-"] {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .admin-stats-grid {
+      justify-content: center;
+    }
+
+    .admin-stats-grid > [class*="col-"] {
+      display: flex;
+      justify-content: center;
+    }
+
+    .admin-stats-grid .stat-card {
+      padding: 16px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .admin-stats-grid .stat-icon {
+      width: 54px;
+      height: 54px;
+      font-size: 1.35rem;
+    }
+
+    .service-modal-image,
+    .service-modal-figure img {
+      height: 200px;
+    }
+  }
+
+  /* ==============================
+   ADMIN MOBILE FIXES
+============================== */
+
+@media (max-width: 480px) {
+  .admin-summary-section .admin-section-heading {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .admin-summary-section .section-heading {
+    text-align: center !important;
+  }
+
+  .admin-stats-grid {
+    justify-content: center;
+  }
+
+  .admin-stats-grid > [class*="col-"] {
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .admin-stats-grid .stat-card {
+    width: 100%;
+    min-height: 190px;
+    padding: 28px 22px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .admin-stats-grid .stat-content {
+    text-align: center;
+  }
+
+  .admin-filters-panel .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .admin-filters-panel .col-lg-8,
+  .admin-filters-panel .col-lg-4 {
+    width: 100%;
+  }
+
+  .admin-filters-panel .admin-filter-group {
+    width: 100%;
+  }
+
+  .admin-filters-panel input,
+  .admin-filters-panel select,
+  .admin-filters-panel .form-select-aqua {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  #filtroEstado {
+    width: 100%;
+    min-width: 100%;
+    height: 58px;
+    padding-right: 42px;
+  }
+}
+
+@media (max-width: 390px) {
+  .admin-stats-grid > [class*="col-"] {
+    max-width: 300px;
+  }
+
+  .admin-stats-grid .stat-card {
+    min-height: 180px;
   }
 }

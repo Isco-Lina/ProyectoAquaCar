@@ -27,29 +27,43 @@
             alt="Logo AquaCar"
             class="aqua-brand-logo"
           />
-          <span class="aqua-brand-text">AquaCar</span>
         </a>
-        <div class="aqua-nav-actions ms-auto">
-          <span class="aqua-user-online">
-            <i class="bi bi-person-circle"></i>
-            <strong id="usuario_logueado">Admin</strong>
-          </span>
-          <a href="./admin.html" class="aqua-nav-link active">Panel</a>
-          <button
-            id="btnClientesVehiculos"
-            class="aqua-nav-link aqua-nav-link-button"
-            type="button"
-          >
-            Clientes
-          </button>
-          <a href="./servicios-admin.html" class="aqua-nav-link"> Servicios </a>
-          <button
-            id="btnCerrarSesion"
-            class="aqua-nav-link aqua-nav-link-button"
-            type="button"
-          >
-            <i class="bi bi-box-arrow-right"></i> Cerrar
-          </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#adminNavbar"
+          aria-controls="adminNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="adminNavbar">
+          <div class="aqua-nav-actions ms-auto">
+            <span class="aqua-user-online">
+              <i class="bi bi-person-circle"></i>
+              <strong id="usuario_logueado">Admin</strong>
+            </span>
+            <a href="./admin.html" class="aqua-nav-link active">Panel</a>
+            <button
+              id="btnClientesVehiculos"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              Clientes
+            </button>
+            <a href="./servicios-admin.html" class="aqua-nav-link">
+              Servicios
+            </a>
+            <button
+              id="btnCerrarSesion"
+              class="aqua-nav-link aqua-nav-link-button"
+              type="button"
+            >
+              <i class="bi bi-box-arrow-right"></i> Cerrar
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -169,7 +183,7 @@
       <div class="container-aqua">
         <div class="admin-section-heading">
           <div>
-            <h2 class="section-heading text-start mb-0">Resumen General</h2>
+            <h2 class="section-heading text-center mb-0">Resumen General</h2>
           </div>
         </div>
 
@@ -243,7 +257,7 @@
                   );
                 "
               >
-                <i class="bi bi-checkmark-circle"></i>
+                <i class="bi bi-check-circle"></i>
               </div>
               <div class="stat-content">
                 <p>Completadas</p>
@@ -277,7 +291,6 @@
       <div class="container-aqua">
         <div class="admin-section-heading">
           <div>
-
             <h2 class="section-heading text-start mb-0">
               Reservas Registradas
             </h2>

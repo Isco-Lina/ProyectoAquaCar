@@ -27,11 +27,25 @@
             alt="Logo AquaCar"
             class="aqua-brand-logo"
           />
-          <span class="aqua-brand-text">AquaCar</span>
         </a>
-        <div class="aqua-nav-actions ms-auto">
-          <a href="./login.html" class="aqua-nav-link active">Iniciar sesión</a>
-          <a href="./registro.html" class="aqua-nav-link">Registrarse</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#authNavbar"
+          aria-controls="authNavbar"
+          aria-expanded="false"
+          aria-label="Alternar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="authNavbar">
+          <div class="aqua-nav-actions ms-auto">
+            <a href="./login.html" class="aqua-nav-link active"
+              >Iniciar sesión</a
+            >
+            <a href="./registro.html" class="aqua-nav-link">Registrarse</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -60,7 +74,6 @@
               alt="Logo AquaCar"
               class="aqua-brand-logo"
             />
-            <span class="aqua-brand-text">AquaCar</span>
           </div>
 
           <h2 class="auth-title">Iniciar sesión</h2>
