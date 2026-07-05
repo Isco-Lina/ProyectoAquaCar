@@ -1,0 +1,557 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  --dark: #030a0f;
+  --dark-2: #06111a;
+  --card: rgba(8, 17, 27, 0.92);
+  --cyan: #00eaff;
+  --green: #00ffb3;
+  --text: #f5f5f5;
+  --muted: #b4bbc3;
+  --border: rgba(0, 234, 255, 0.28);
+  --yellow: #ffd75e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: var(--dark);
+  color: var(--text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(3, 10, 15, 0.82), rgba(3, 10, 15, 0.95)),
+    url("../images/fondos-aquacar/fondo-aquacar-4.jpeg") center center / cover no-repeat fixed;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(0, 234, 255, 0.14), transparent 18%),
+    radial-gradient(circle at 80% 30%, rgba(0, 255, 179, 0.08), transparent 22%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* HERO - ESCRITORIO / NOTEBOOK / TABLET */
+
+.hero {
+  min-height: calc(100vh - 78px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 86px 7% 70px;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 10, 15, 0.96) 0%,
+      rgba(3, 10, 15, 0.78) 39%,
+      rgba(3, 10, 15, 0.28) 72%,
+      rgba(3, 10, 15, 0.15) 100%
+    ),
+    url("../images/fondos-aquacar/ferrari.jpg");
+
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 42%, rgba(0, 234, 255, 0.18), transparent 22%),
+    linear-gradient(to bottom, rgba(3, 10, 15, 0.08), rgba(3, 10, 15, 0.3));
+  pointer-events: none;
+}
+
+.hero-card {
+  position: relative;
+  z-index: 1;
+  width: min(650px, 100%);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.tag {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  margin-bottom: 28px;
+  background: rgba(0, 234, 255, 0.08);
+}
+
+.hero h1 {
+  max-width: 640px;
+  margin: 0;
+  font-size: clamp(42px, 5.4vw, 76px);
+  line-height: 1.06;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--cyan);
+  text-shadow: 0 0 18px rgba(0, 234, 255, 0.18);
+}
+
+.hero p {
+  max-width: 570px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.hero-actions,
+.contacto-botones {
+  margin-top: 38px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.btn {
+  min-width: 180px;
+  padding: 16px 28px;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: 900;
+  transition: 0.25s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  box-shadow: 0 10px 25px rgba(0, 234, 255, 0.25);
+}
+
+.btn-outline {
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* SECCIONES */
+
+section {
+  padding: 95px 7%;
+}
+
+.servicios {
+  background: rgba(0, 5, 10, 0.78);
+}
+
+.servicios h2,
+.contacto h2 {
+  text-align: center;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 900;
+}
+
+.linea {
+  width: 95px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  border-radius: 10px;
+  margin: 18px auto 45px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: var(--muted);
+  font-size: 18px;
+  margin-bottom: 65px;
+}
+
+/* CATÁLOGO */
+
+.catalogo-bloque {
+  max-width: 1160px;
+  margin: 0 auto 80px;
+}
+
+.catalogo-bloque h3 {
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.hover-gallery {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  height: 430px;
+}
+
+.panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: flex 0.45s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.panel:hover {
+  flex: 3.2;
+  transform: translateY(-6px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(0, 234, 255, 0.18);
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 5, 10, 0.96),
+    rgba(0, 5, 10, 0.55),
+    rgba(0, 5, 10, 0.18)
+  );
+}
+
+.panel-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 34px;
+  z-index: 2;
+}
+
+.panel-content h4 {
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.panel-content p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 430px;
+}
+
+.panel-content strong {
+  display: block;
+  color: var(--yellow);
+  font-size: 33px;
+  font-weight: 900;
+  margin-top: 18px;
+}
+
+.panel-content small {
+  display: block;
+  color: var(--muted);
+  margin: 8px 0 20px;
+}
+
+.panel-content a {
+  display: inline-block;
+  min-width: 140px;
+  padding: 13px 28px;
+  border-radius: 35px;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 900;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.panel-content a:hover {
+  background: var(--cyan);
+  color: #001014;
+}
+
+/* IMÁGENES DEL CATÁLOGO */
+
+.sedan-basico{
+   background-image: url("../images/catalogo/lavado-basico.png");
+}
+
+.sedan-full{
+     background-image: url("../images/catalogo/lavado-full.png");
+}
+
+.sedan-encerado{
+  background-image: url("../images/catalogo/lavado-encerado.png");
+}
+
+.suv-basico{
+  background-image: url("../images/catalogo/basico-suv-camioneta.png");
+}
+
+.suv-full{
+  background-image: url("../images/catalogo/full-suv-camioneta.png");
+}
+
+.suv-encerado{
+  background-image: url("../images/catalogo/encerado-suv-camioneta.png");
+}
+
+.extra-focos {
+  background-image: url("../images/catalogo/pulido-focos.png");
+}
+
+.extra-motor {
+  background-image: url("../images/catalogo/lavado-motor.png");
+}
+
+.extra-moto {
+  background-image: url("../images/catalogo/lavado-moto.png");
+}
+
+/* CONTACTO */
+
+.contacto {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+  background: rgba(0, 5, 10, 0.82);
+}
+
+.contacto-cta {
+  background: rgba(9, 20, 34, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 45px 38px;
+}
+
+.contacto-cta h2 {
+  text-align: left;
+}
+
+.contacto-cta .linea {
+  margin-left: 0;
+}
+
+.contacto-cta p {
+  margin-top: 25px;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.contacto-botones {
+  justify-content: flex-start;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.contacto-grid article {
+  background: rgba(9, 20, 34, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px;
+}
+
+.contacto-grid h3 {
+  font-size: 26px;
+  margin-bottom: 18px;
+}
+
+.contacto-grid p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.contacto-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.contacto-link article {
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.contacto-link:hover article {
+  transform: translateY(-6px);
+  border-color: #00eaff;
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.25);
+}
+
+.contacto-link h3,
+.contacto-link p {
+  color: inherit;
+}
+
+.contacto-icono {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  transition: all 0.25s ease;
+}
+
+.contacto-link:hover .contacto-icono {
+  transform: scale(1.12);
+}
+
+.contacto-link article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contacto-link article div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacto-static {
+  transition: all 0.25s ease;
+  border-radius: inherit;
+}
+
+.contacto-static:hover {
+  transform: translateY(-6px);
+  border-color: #00eaff;
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.25);
+}
+
+.contacto-static h3,
+.contacto-static p {
+  color: inherit;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 38px 20px;
+  text-align: center;
+  background: rgba(9, 20, 34, 0.96);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .contacto {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  /* HERO MÓVIL / CELULAR */
+  .hero {
+    min-height: auto;
+    padding: 70px 22px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(3, 10, 15, 0.84),
+        rgba(3, 10, 15, 0.92)
+      ),
+      url("../images/fondos-aquacar/fondo-aquacar-4.jpeg");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+    line-height: 1.05;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .tag {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  section {
+    padding: 70px 20px;
+  }
+
+  .contacto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hover-gallery {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .panel {
+    min-height: 360px;
+  }
+
+  .panel:hover {
+    flex: 1;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

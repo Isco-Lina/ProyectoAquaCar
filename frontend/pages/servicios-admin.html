@@ -4,244 +4,160 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestión de Servicios - AquaCar</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="../css/aquacar-premium.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/servicios-admin.css" />
   </head>
-  <body class="page-bg servicios-admin-page admin-bg">
-    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
-      <div class="container-aqua">
-        <a class="navbar-brand aqua-brand" href="../index.html">
-          <img
-            src="../images/logo.png"
-            alt="Logo AquaCar"
-            class="aqua-brand-logo"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#adminNavbar"
-          aria-controls="adminNavbar"
-          aria-expanded="false"
-          aria-label="Alternar navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="adminNavbar">
-          <div class="aqua-nav-actions ms-auto">
-            <span class="aqua-user-online">
-              <i class="bi bi-person-circle"></i>
-              <strong id="usuario_logueado">Admin</strong>
-            </span>
-            <a href="./admin.html" class="aqua-nav-link">Panel</a>
-            <a href="./clientes-vehiculos.html" class="aqua-nav-link"
-              >Clientes</a
-            >
-            <a href="./servicios-admin.html" class="aqua-nav-link active"
-              >Servicios</a
-            >
-            <button
-              id="btnCerrarSesion"
-              class="aqua-nav-link aqua-nav-link-button"
-              type="button"
-            >
-              <i class="bi bi-box-arrow-right"></i> Cerrar
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
 
-    <section
-      class="page-stage admin-stage section-gap-tight servicios-admin-section"
-    >
-      <div class="container-aqua">
-        <div class="servicio-form-shell">
-          <div class="services-admin-header">
-            <div>
-              <h2 class="section-heading text-start mb-2" id="tituloFormulario">
-                Crear Servicio
-              </h2>
-              <p class="section-lead mb-0">
-                Registra servicios con un formulario más claro, limpio y
-                alineado al estilo AquaCar.
-              </p>
+  <body>
+    <header class="navbar">
+      <a href="./admin.html" class="logo-link">
+        <img src="../images/logo.png" alt="Logo AquaCar" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mobile-menu">
+        <div class="usuario-nav">
+          👤 <strong id="usuario_logueado"></strong>
+        </div>
+
+        <nav>
+          <a href="./admin.html">Panel</a>
+          <a href="./clientes-vehiculos.html">Clientes</a>
+          <a class="activo" href="./servicios-admin.html">Servicios</a>
+          <button id="btnCerrarSesion">↪</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero-servicios">
+        <h1 id="tituloFormulario">Crear Servicio</h1>
+        <p>
+          Registra servicios con un formulario más claro, limpio y alineado al
+          estilo AquaCar.
+        </p>
+      </section>
+
+      <section class="form-card">
+        <div id="mensaje" class="message"></div>
+
+        <form id="formServicio">
+          <input type="hidden" id="id_servicio" />
+
+          <div class="campo campo-full">
+            <label for="nombre_servicio">🏷 Nombre del servicio</label>
+            <input
+              type="text"
+              id="nombre_servicio"
+              placeholder="Ej: Lavado básico"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="campo">
+              <label for="duracion_minutos">◷ Duración estimada</label>
+              <select id="duracion_minutos" required>
+                <option value="">Selecciona duración</option>
+              </select>
+              <small>Duración estimada en minutos.</small>
+            </div>
+
+            <div class="campo">
+              <label for="precio">$ Precio</label>
+              <input
+                type="number"
+                id="precio"
+                min="0"
+                placeholder="$ 12.000"
+                required
+              />
+              <small
+                >Se guarda limpio en el backend y se muestra formateado.</small
+              >
             </div>
           </div>
 
-          <div class="card-premium admin-service-form-card border-0">
-            <div id="mensaje" class="message admin-service-message"></div>
+          <div class="form-row">
+            <div class="campo">
+              <label for="categoria">🗂 Categoría</label>
+              <select id="categoria">
+                <option value="">Selecciona una categoría</option>
+                <option value="sedan">Sedán / City Car</option>
+                <option value="suv">SUV / Camioneta</option>
+                <option value="extra">Servicios exclusivos</option>
+                <option value="otros">Promociones y otros servicios</option>
+              </select>
+              <small>Ayuda a agrupar el servicio en el panel cliente.</small>
+            </div>
 
-            <form id="formServicio" class="aqua-form admin-service-form">
-              <input type="hidden" id="id_servicio" />
-
-              <div class="admin-form-group">
-                <label
-                  for="nombre_servicio"
-                  class="form-label admin-form-label"
-                >
-                  <i class="bi bi-tag"></i> Nombre del servicio
-                </label>
+            <div class="campo imagen-campo">
+              <label for="imagen">🖼 Imagen del servicio</label>
+              <div class="file-control">
                 <input
-                  type="text"
-                  class="form-control form-control-aqua aqua-input"
-                  id="nombre_servicio"
-                  placeholder="Ej: Lavado básico"
-                  required
+                  type="file"
+                  id="imagen"
+                  class="input-imagen"
+                  accept="image/png, image/jpeg, image/webp"
                 />
               </div>
-
-              <div class="admin-form-grid">
-                <div class="admin-form-group">
-                  <label
-                    for="duracion_minutos"
-                    class="form-label admin-form-label"
-                  >
-                    <i class="bi bi-clock"></i> Duración estimada
-                  </label>
-                  <select
-                    id="duracion_minutos"
-                    class="form-select form-select-aqua aqua-input"
-                    required
-                  >
-                    <option value="">Selecciona duración</option>
-                    <option value="30">30 minutos</option>
-                    <option value="40">40 minutos</option>
-                    <option value="60">60 minutos</option>
-                    <option value="90">90 minutos</option>
-                    <option value="120">120 minutos</option>
-                    <option value="150">150 minutos</option>
-                    <option value="180">180 minutos</option>
-                  </select>
-                  <small class="admin-form-help"
-                    >Duración estimada en minutos.</small
-                  >
-                </div>
-
-                <div class="admin-form-group">
-                  <label for="precio" class="form-label admin-form-label">
-                    <i class="bi bi-currency-dollar"></i> Precio
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-aqua aqua-input"
-                    id="precio"
-                    inputmode="numeric"
-                    autocomplete="off"
-                    placeholder="$ 12.000"
-                    required
-                  />
-                  <small class="admin-form-help"
-                    >Se guarda limpio en el backend y se muestra
-                    formateado.</small
-                  >
-                </div>
-              </div>
-
-              <div class="admin-form-group">
-                <label for="descripcion" class="form-label admin-form-label">
-                  <i class="bi bi-chat-dots"></i> Descripción
-                </label>
-                <textarea
-                  class="form-control form-control-aqua aqua-input"
-                  id="descripcion"
-                  rows="4"
-                  placeholder="Describe detalladamente el servicio..."
-                  required
-                  style="resize: vertical; min-height: 130px"
-                ></textarea>
-              </div>
-
-              <div class="admin-form-group admin-form-group-inline">
-                <div class="flex-grow-1">
-                  <label for="activo" class="form-label admin-form-label">
-                    <i class="bi bi-toggles"></i> Estado
-                  </label>
-                  <select
-                    id="activo"
-                    class="form-select form-select-aqua aqua-input"
-                  >
-                    <option value="1">Activo</option>
-                    <option value="0">Inactivo</option>
-                  </select>
-                </div>
-
-                <div class="admin-form-actions">
-                  <button
-                    type="submit"
-                    class="btn-aqua flex-grow-1 admin-form-btn"
-                    id="btnSubmit"
-                  >
-                    <i class="bi bi-save"></i> Guardar Servicio
-                  </button>
-                  <button
-                    type="button"
-                    class="btn-aqua-secondary flex-grow-1 admin-form-btn"
-                    id="btnCancelarEdicion"
-                  >
-                    <i class="bi bi-x-circle"></i> Cancelar Edición
-                  </button>
-                </div>
-              </div>
-            </form>
+              <input type="hidden" id="imagen_url" />
+              <img id="previewImagen" alt="Vista previa de la imagen" />
+              <small>JPG, PNG o WEBP. Máximo 3 MB.</small>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="servicios-registrados-section section-gap-tight">
-      <div class="container-aqua">
-        <h2
-          style="
-            color: var(--aqua-text-light);
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 2rem;
-          "
-        >
-          <i
-            class="bi bi-gear-wide-connected"
-            style="color: var(--aqua-green-water); font-size: 1.5rem"
-          ></i>
-          Servicios Registrados
-        </h2>
-
-        <div id="listaServicios" class="row g-4" style="min-height: 300px">
-          <div class="col-12">
-            <p
-              style="
-                color: var(--aqua-text-gray);
-                text-align: center;
-                padding: 40px 20px;
-              "
-            >
-              <i class="bi bi-hourglass-split"></i> Cargando servicios...
-            </p>
+          <div class="campo campo-full">
+            <label for="descripcion">💬 Descripción</label>
+            <textarea
+              id="descripcion"
+              rows="5"
+              placeholder="Describe detalladamente el servicio..."
+              required
+            ></textarea>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <footer id="pie-pagina">
+          <div class="form-row estado-row">
+            <div class="campo">
+              <label for="activo">☷ Estado</label>
+              <select id="activo">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-guardar" id="btnSubmit">
+              Guardar Servicio
+            </button>
+
+            <button type="button" class="btn-cancelar" id="btnCancelarEdicion">
+              ⊗ Cancelar Edición
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="listado-card">
+        <h2>⚙ Servicios Registrados</h2>
+        <div id="listaServicios" class="servicios-grid"></div>
+      </section>
+    </main>
+
+    <footer>
       <p>
-        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        © 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
         reservados.
       </p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/servicios-admin.js"></script>
+    <script src="../js/navbar.js"></script>
   </body>
 </html>

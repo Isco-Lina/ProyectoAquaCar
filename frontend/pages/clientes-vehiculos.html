@@ -4,225 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clientes y Vehículos - AquaCar</title>
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
-    <!-- AquaCar Premium CSS -->
-    <link rel="stylesheet" href="../css/aquacar-premium.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/clientes-vehiculos.css" />
   </head>
-  <body class="page-bg clientes-page admin-bg">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
-      <div class="container-aqua">
-        <a class="navbar-brand aqua-brand" href="../index.html">
-          <img
-            src="../images/logo.png"
-            alt="Logo AquaCar"
-            class="aqua-brand-logo"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#adminNavbar"
-          aria-controls="adminNavbar"
-          aria-expanded="false"
-          aria-label="Alternar navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="adminNavbar">
-          <div class="aqua-nav-actions ms-auto">
-            <span class="aqua-user-online">
-              <i class="bi bi-person-circle"></i>
-              <strong id="usuario_logueado">Admin</strong>
-            </span>
-            <a href="./admin.html" class="aqua-nav-link">Panel</a>
-            <a href="./clientes-vehiculos.html" class="aqua-nav-link active"
-              >Clientes</a
-            >
-            <a href="./servicios-admin.html" class="aqua-nav-link">Servicios</a>
-            <button
-              id="btnCerrarSesion"
-              class="aqua-nav-link aqua-nav-link-button"
-              type="button"
-            >
-              <i class="bi bi-box-arrow-right"></i> Cerrar
-            </button>
-          </div>
+
+  <body>
+    <header class="navbar">
+      <a href="./admin.html" class="logo-link">
+        <img src="../images/logo.png" alt="Logo AquaCar" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mobile-menu">
+        <div class="usuario-nav">
+          👤 <strong id="usuario_logueado"></strong>
         </div>
+
+        <nav>
+          <a href="./admin.html">Panel</a>
+          <a class="activo" href="./clientes-vehiculos.html">Clientes</a>
+          <a href="./servicios-admin.html">Servicios</a>
+          <button id="btnCerrarSesion" type="button">↪</button>
+        </nav>
       </div>
-    </nav>
+    </header>
 
-    <!-- CLIENTES SECTION -->
-    <section
-      class="page-stage admin-stage"
-      style="
-        background: linear-gradient(
-          135deg,
-          rgba(0, 229, 255, 0.03) 0%,
-          var(--aqua-bg-darkest) 100%
-        );
-        padding: 80px 20px;
-      "
-    >
-      <div class="container-aqua">
-        <!-- BUSQUEDA -->
-        <div class="mb-5">
-          <label
-            for="inputBuscar"
-            style="
-              color: var(--aqua-text-light);
-              font-size: 0.95rem;
-              margin-bottom: 12px;
-              display: block;
-            "
-          >
-            <i class="bi bi-search"></i> Buscar clientes o vehículos
-          </label>
-          <input
-            type="text"
-            class="form-control form-control-aqua aqua-input"
-            id="inputBuscar"
-            placeholder="Nombre, apellido, correo, patente, marca o modelo..."
-            style="font-size: 1rem; padding: 12px 16px"
-          />
+    <main class="page">
+      <section class="busqueda-section">
+        <label for="inputBuscar">🔍 Buscar clientes o vehículos</label>
+        <input
+          type="text"
+          id="inputBuscar"
+          placeholder="Nombre, apellido, correo, patente, marca o modelo..."
+        />
+      </section>
+
+      <section class="listado-card">
+        <h2>Clientes registrados</h2>
+
+        <div id="listaClientes" class="clientes-grid">
+          <p class="sin-datos">Cargando clientes...</p>
         </div>
+      </section>
 
-        <h2
-          style="
-            color: var(--aqua-text-light);
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 2rem;
-          "
-        >
-          <i
-            class="bi bi-person-check"
-            style="color: var(--aqua-cyan-bright); font-size: 1.5rem"
-          ></i>
-          Clientes Registrados
-        </h2>
+      <section class="listado-card">
+        <h2>Vehículos registrados</h2>
 
-        <div id="listaClientes" class="row g-4" style="min-height: 300px">
-          <div class="col-12">
-            <p
-              style="
-                color: var(--aqua-text-gray);
-                text-align: center;
-                padding: 40px 20px;
-              "
-            >
-              <i class="bi bi-hourglass-split"></i> Cargando clientes...
-            </p>
-          </div>
+        <div id="listaVehiculos" class="vehiculos-grid">
+          <p class="sin-datos">Cargando vehículos...</p>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- VEHÍCULOS SECTION -->
-    <section
-      style="
-        background: linear-gradient(
-          135deg,
-          var(--aqua-bg-darker) 0%,
-          rgba(0, 71, 171, 0.05) 100%
-        );
-        padding: 80px 20px;
-      "
-    >
-      <div class="container-aqua">
-        <h2
-          style="
-            color: var(--aqua-text-light);
-            margin-bottom: 50px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 2rem;
-          "
-        >
-          <i
-            class="bi bi-car-front"
-            style="color: var(--aqua-green-water); font-size: 1.5rem"
-          ></i>
-          Vehículos Registrados
-        </h2>
-
-        <div id="listaVehiculos" class="row g-4" style="min-height: 300px">
-          <div class="col-12">
-            <p
-              style="
-                color: var(--aqua-text-gray);
-                text-align: center;
-                padding: 40px 20px;
-              "
-            >
-              <i class="bi bi-hourglass-split"></i> Cargando vehículos...
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MODAL - Vehículos del Cliente -->
-    <div
-      class="modal fade"
-      id="modalVehiculos"
-      tabindex="-1"
-      aria-labelledby="modalVehiculosLabel"
-      aria-hidden="true"
-    >
-      <div
-        class="modal-dialog modal-dialog-centered modal-dialog-scrollable admin-client-modal"
-      >
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="admin-client-modal-title-wrap">
-              <h5 class="modal-title" id="modalVehiculosLabel">
-                Vehículos de Cliente
-              </h5>
-              <div class="admin-client-modal-meta" id="modalVehiculosMeta">
-                <span class="admin-client-modal-name">Cliente</span>
-                <span class="admin-client-modal-email">correo@cliente.cl</span>
-              </div>
-            </div>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body" id="modalVehiculosContent">
-            <!-- Contenido dinámico -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer id="pie-pagina">
+    <footer>
       <p>
-        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        © 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
         reservados.
       </p>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/navbar.js"></script>
     <script src="../js/clientes-vehiculos.js"></script>
   </body>
 </html>

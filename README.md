@@ -1,265 +1,141 @@
 # AquaCar 2.0
 
-AquaCar 2.0 es un sistema web premium para gestión de lavado automotriz. Permite registrar usuarios, administrar vehículos, crear reservas online, controlar servicios y operar un panel administrador con una interfaz moderna, responsive y orientada a producción.
+Sistema web para la gestión de reservas, servicios, vehículos y administración operativa de un lavado automotriz.
 
-## Características principales
+## Descripción
 
-- Registro e inicio de sesión por roles
-- Gestión de vehículos por cliente
-- Reservas online con validación de disponibilidad
-- Cancelación y seguimiento de reservas
-- Panel administrador para control de reservas
-- Gestión completa de servicios
-- Estados de reserva administrables
-- Sistema premium responsive
-- Validaciones frontend y backend
-- Mensajes visuales tipo toast
-- Integración con MySQL en Railway y despliegue en Render
+AquaCar 2.0 centraliza el flujo de atención del negocio en una plataforma web con frontend estático, backend REST y base de datos MySQL. El sistema permite a clientes registrar vehículos, crear reservas y revisar su historial, mientras que el administrador gestiona servicios, reservas y usuarios desde paneles protegidos.
 
-## Tecnologías utilizadas
-
-- HTML5
-- CSS3
-- JavaScript vanilla
-- Bootstrap 5 vía CDN
-- Bootstrap Icons vía CDN
-- Node.js
-- Express
-- MySQL
-- mysql2
-- cors
-- dotenv
-- bcryptjs
-
-## Arquitectura del sistema
+## Tecnologías
 
 ### Frontend
 
-La interfaz está construida con HTML, CSS y JavaScript vanilla. Está organizada en páginas públicas, páginas de cliente y páginas administrativas. El frontend consume la API del backend mediante `fetch` y muestra feedback visual con toasts premium reutilizables.
+- HTML
+- CSS
+- JavaScript vanilla
 
 ### Backend
 
-El backend está desarrollado con Node.js y Express. Expone una API REST bajo la ruta base `/api`, maneja autenticación básica por usuario/rol, valida datos y conecta con MySQL mediante `mysql2`.
-
-### API REST
-
-Las rutas principales del sistema cubren:
-
-- usuarios y login
-- vehículos
-- servicios
-- reservas
-- consulta de clientes
+- Node.js
+- Express
+- JWT
+- bcryptjs
 
 ### Base de datos
 
-La base de datos está alojada en MySQL en Railway y utiliza un modelo relacional con tablas principales para usuarios, roles, vehículos, servicios, reservas y catálogos auxiliares.
+- MySQL / MySQL2
 
-### Deploy
+### Utilidades
 
-- Frontend en Render
-- Backend en Render
-- Base de datos MySQL en Railway
+- Visual Studio Code
+- MySQL Workbench
+- Postman
+- GitHub
+
+## Arquitectura
+
+La solución usa una arquitectura de tres capas:
+
+1. Presentación: frontend en HTML, CSS y JavaScript.
+2. Lógica: API REST en Node.js con Express.
+3. Datos: persistencia en MySQL.
+
+La comunicación entre frontend y backend se realiza por HTTP/JSON. Las rutas privadas usan JWT y control de roles.
+
+## Funcionalidades
+
+### Cliente
+
+- Registro e inicio de sesión
+- Registro de vehículos
+- Visualización de servicios activos
+- Creación de reservas
+- Consulta de reservas propias
+- Cancelación de reservas permitidas
+
+### Administrador
+
+- Gestión de reservas
+- Cambio de estado de reservas
+- Eliminación de reservas
+- Gestión de servicios
+- Activación o desactivación de servicios
+- Visualización de clientes y vehículos
+
+## Seguridad implementada
+
+- Contraseñas cifradas con bcryptjs
+- Autenticación con JWT
+- Protección por roles en backend
+- Validación de rutas privadas con Bearer token
+- CORS con cabecera Authorization permitida
+- Rate limiting en endpoints sensibles
+- `x-powered-by` deshabilitado
 
 ## Estructura del proyecto
 
-```text
-AquaCar/
-├── README.md
-├── backend/
-│   ├── .env.example
-│   ├── db.js
-│   ├── index.js
-│   ├── package.json
-│   └── routes/
-│       ├── reservaRoutes.js
-│       ├── servicioRoutes.js
-│       ├── usuarioRoutes.js
-│       └── vehiculoRoutes.js
-├── database/
-│   └── script SQL del sistema
-└── frontend/
-    ├── index.html
-    ├── css/
-│   │   └── aquacar-premium.css
-    ├── images/
-    ├── js/
-    │   ├── admin.js
-    │   ├── auth.js
-    │   ├── clientes-vehiculos.js
-    │   ├── config.js
-    │   ├── index.js
-    │   ├── login.js
-    │   ├── mis-reservas.js
-    │   ├── panel.js
-    │   ├── registro.js
-    │   ├── reservas.js
-    │   ├── servicios-admin.js
-    │   └── vehiculos.js
-    └── pages/
-        ├── admin.html
-        ├── clientes-vehiculos.html
-        ├── login.html
-        ├── mis-reservas.html
-        ├── panel.html
-        ├── registro.html
-        ├── reservas.html
-        ├── servicios-admin.html
-        └── vehiculos.html
+```bash
+/frontend   → Interfaz pública y paneles de cliente/admin
+/backend    → API REST, middleware, rutas y conexión a MySQL
+/database   → Script SQL, modelo relacional y documentación de BD
 ```
 
 ## Base de datos
 
-El sistema usa un modelo relacional pensado para mantener integridad entre clientes, vehículos, servicios y reservas.
-
-### Tablas principales
-
-- `ROL`
-- `USUARIO`
-- `VEHICULO`
-- `MARCA_VEHICULO`
-- `MODELO_VEHICULO`
-- `TIPO_VEHICULO`
-- `COLOR_VEHICULO`
-- `SERVICIO`
-- `RESERVA`
-- `ESTADO_RESERVA`
-
-### Relaciones principales
-
-- `ROL` 1:N `USUARIO`
-- `USUARIO` 1:N `VEHICULO`
-- `MARCA_VEHICULO` 1:N `MODELO_VEHICULO`
-- `TIPO_VEHICULO` 1:N `MODELO_VEHICULO`
-- `MODELO_VEHICULO` 1:N `VEHICULO`
-- `COLOR_VEHICULO` 1:N `VEHICULO`
-- `USUARIO` 1:N `RESERVA`
-- `VEHICULO` 1:N `RESERVA`
-- `SERVICIO` 1:N `RESERVA`
-- `ESTADO_RESERVA` 1:N `RESERVA`
-
-### Observación sobre vehículos
-
-La estructura actual de vehículos está normalizada mediante catálogos de marca, modelo, tipo y color. Esto permite mantener el frontend dinámico y evitar duplicación de datos al registrar vehículos y reservas.
+La carpeta `/database` incluye el script de creación y los artefactos de modelado. La base de datos contiene las tablas de roles, usuarios, vehículos, servicios, estados de reserva y reservas.
 
 ## Variables de entorno
 
-Crear un archivo `.env` en `backend/` con esta estructura:
+Crear `backend/.env` con valores equivalentes a estos:
 
 ```env
-DB_HOST=
-DB_PORT=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-PORT=
-```
-
-Ejemplo de configuración para desarrollo o producción:
-
-```env
-DB_HOST=tu-host-de-mysql
+DB_HOST=localhost
 DB_PORT=3306
-DB_USER=tu-usuario
-DB_PASSWORD=tu-password
-DB_NAME=tu-base-de-datos
+DB_USER=root
+DB_PASSWORD=tu_clave_mysql
+DB_NAME=bd_aquacar_2
 PORT=3000
+FRONTEND_URL=http://127.0.0.1:5500
+JWT_SECRET=una_clave_larga_y_aleatoria
+JWT_EXPIRES=8h
 ```
 
 ## Instalación local
 
-### 1. Clonar el proyecto
+### 1. Importar la base de datos
 
-```bash
-git clone <url-del-repositorio>
-cd AquaCar
-```
+Ejecutar `database/bd_aquacar.sql` en MySQL Workbench o una herramienta compatible.
 
-### 2. Instalar dependencias del backend
+### 2. Configurar el backend
+
+Ubicar el archivo `.env` dentro de `backend/` con las variables necesarias.
+
+### 3. Instalar dependencias
 
 ```bash
 cd backend
 npm install
 ```
 
-### 3. Configurar variables de entorno
-
-Crear `backend/.env` con los datos de tu instancia MySQL.
-
-### 4. Cargar la base de datos
-
-Importar el script SQL del proyecto en tu base de datos MySQL local o en Railway.
-
-### 5. Iniciar el backend
+### 4. Iniciar el backend
 
 ```bash
 npm start
 ```
 
-En desarrollo también puedes usar:
+## Scripts disponibles
 
-```bash
-npm run dev
-```
+En `backend/package.json`:
 
-### 6. Abrir el frontend
+- `npm start` → ejecuta el servidor
+- `npm run dev` → ejecuta el servidor con nodemon
 
-Abrir `frontend/index.html` con un servidor estático, por ejemplo Live Server en VS Code, o desplegarlo directamente en Render.
+## Despliegue
 
-## Deploy
+El proyecto está preparado para separar frontend y backend en entornos distintos. Solo deben ajustarse `FRONTEND_URL`, `DB_*` y `JWT_SECRET` según el entorno de despliegue.
 
-### Frontend en Render
+## Notas
 
-- Publicar la carpeta `frontend/` como sitio estático
-- Verificar que las rutas relativas a `css`, `js`, `images` y `pages` se mantengan intactas
-- Confirmar que el frontend apunte a la URL real del backend desplegado
-
-### Backend en Render
-
-- Crear un servicio web para `backend/`
-- Definir las variables de entorno en Render
-- Verificar que el servidor escuche en `process.env.PORT`
-- Exponer la API bajo `/api`
-
-### Base de datos en Railway
-
-- Crear la instancia MySQL en Railway
-- Copiar credenciales al `.env` local o a las variables del servicio en Render
-- Importar el esquema SQL del sistema
-- Validar la conectividad desde el backend
-
-## Funcionalidades implementadas
-
-- Registro de usuarios clientes
-- Inicio de sesión con roles
-- Gestión de vehículos por usuario
-- Catálogo dinámico de marcas, modelos y colores
-- Reservas con selección de fecha y horario
-- Validación de disponibilidad antes de reservar
-- Consulta de reservas por cliente
-- Cancelación de reservas por cliente
-- Panel administrador con listado de reservas
-- Cambio de estado de reservas
-- Eliminación de reservas desde administración
-- Gestión de servicios: crear, editar, activar, desactivar y eliminar
-- Vista de clientes con sus vehículos asociados
-- Interfaz premium con modales y toasts visuales
-
-## Mejoras implementadas en AquaCar 2.0
-
-- Diseño premium oscuro con estilo automotriz
-- Navbar moderna y consistente en todo el sistema
-- Sistema relacional de vehículos más ordenado
-- Reservas con mejor validación y control de horarios
-- Administración más clara para reservas y servicios
-- Mensajes visuales tipo toast reutilizables
-- Mejor experiencia responsive en móvil y escritorio
-- Refuerzo de validaciones en frontend y backend
-
-## Estado actual del proyecto
-
-El sistema se encuentra operativo y listo para seguir con ajustes finos antes de producción. La base funcional está implementada y el proyecto está orientado a su despliegue en Render y Railway con una estructura estable.
-
-## Autor
-
-Francisco Molina
+- No se incluyen credenciales ni datos de usuarios en este documento.
+- Las credenciales de prueba deben manejarse solo en entornos locales o de QA.
+- Para producción, use una `JWT_SECRET` aleatoria y manténgala fuera del repositorio.

@@ -4,307 +4,119 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis vehículos - AquaCar</title>
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
-    <!-- AquaCar Premium CSS -->
-    <link rel="stylesheet" href="../css/aquacar-premium.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/vehiculos.css" />
   </head>
-  <body class="page-bg vehiculos-page client-bg">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
-      <div class="container-aqua">
-        <a class="navbar-brand aqua-brand" href="../index.html">
-          <img
-            src="../images/logo.png"
-            alt="Logo AquaCar"
-            class="aqua-brand-logo"
+
+  <body>
+    <header class="navbar">
+      <a href="./panel.html" class="logo-link">
+        <img src="../images/logo.png" alt="Logo AquaCar" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mobile-menu">
+        <div class="usuario-nav">
+          👤 <strong id="usuario_logueado"></strong>
+        </div>
+
+        <nav>
+          <a href="./panel.html">Panel</a>
+          <a href="./reservas.html">Reservar</a>
+          <a href="./mis-reservas.html">Mis reservas</a>
+          <a class="activo" href="./vehiculos.html">Mis vehículos</a>
+          <button id="btnCerrarSesion">↪</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero-vehiculos">
+        <span>Mis vehículos</span>
+        <h1>Registra tus vehículos para reservar más rápido</h1>
+        <p>
+          Conserva patente, marca, modelo y color para mantener tu flujo de
+          reservas.
+        </p>
+      </section>
+
+      <section class="vehiculos-layout">
+        <form id="vehiculoForm" class="form-card">
+          <h2>▣ Registrar vehículo</h2>
+
+          <input
+            type="text"
+            id="patente"
+            placeholder="Patente *"
+            maxlength="8"
+            required
           />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#clienteNavbar"
-          aria-controls="clienteNavbar"
-          aria-expanded="false"
-          aria-label="Alternar navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="clienteNavbar">
-          <div class="aqua-nav-actions ms-lg-auto">
-            <span class="aqua-user-online">
-              <i class="bi bi-person-circle"></i>
-              <strong id="usuario_logueado">Usuario</strong>
-            </span>
-            <a href="./panel.html" class="aqua-nav-link">
-              <i class="bi bi-arrow-left"></i> Volver al panel
-            </a>
-            <a href="./reservas.html" class="aqua-nav-link"> Reservar ahora </a>
-            <a href="./mis-reservas.html" class="aqua-nav-link">
-              Mis reservas
-            </a>
-            <a href="./vehiculos.html" class="aqua-nav-link active">
-              Mis vehículos
-            </a>
-            <button
-              id="btnCerrarSesion"
-              class="aqua-nav-link aqua-nav-link-button"
-              type="button"
-            >
-              <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-            </button>
+
+          <small>Escribe la patente tal como aparece en el vehículo.</small>
+
+          <select id="marca" required>
+            <option value="">Marca</option>
+          </select>
+
+          <select id="modelo" required disabled>
+            <option value="">Modelo</option>
+          </select>
+
+          <select id="tipo_vehiculo" required>
+            <option value="">Tipo de vehículo</option>
+            <option value="Sedán">Sedán</option>
+            <option value="SUV">SUV</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Camioneta">Camioneta</option>
+          </select>
+
+          <select id="color" required>
+            <option value="">Color</option>
+            <option value="Blanco">Blanco</option>
+            <option value="Negro">Negro</option>
+            <option value="Gris">Gris</option>
+            <option value="Plateado">Plateado</option>
+            <option value="Rojo">Rojo</option>
+            <option value="Azul">Azul</option>
+            <option value="Verde">Verde</option>
+            <option value="Café">Café</option>
+            <option value="Beige">Beige</option>
+            <option value="Otro">Otro</option>
+          </select>
+
+          <button type="submit" class="btn-principal">
+            Registrar vehículo
+          </button>
+
+          <div id="mensaje" class="message"></div>
+        </form>
+
+        <section class="listado-card">
+          <h2>☘ Vehículos registrados</h2>
+
+          <div id="listaVehiculos" class="vehiculos-grid">
+            <p class="sin-datos">Cargando vehículos...</p>
           </div>
-        </div>
-      </div>
-    </nav>
+        </section>
+      </section>
+    </main>
 
-    <!-- HERO + FORMULARIO -->
-    <section class="page-section-bg client-hero vehiculos-hero-bg">
-      <div class="container-aqua hero-stack">
-        <div class="hero-copy">
-          <h1>Mis Vehículos</h1>
-          <p>
-            Registra y administra los vehículos de tu cuenta para reservar
-            servicios con rapidez.
-          </p>
-        </div>
-
-        <div class="row g-4 align-items-stretch">
-          <div class="col-lg-5">
-            <div class="card-premium h-100">
-              <h2
-                class="section-heading"
-                style="font-size: 1.8rem; margin-bottom: 18px"
-              >
-                <i
-                  class="bi bi-plus-circle"
-                  style="color: var(--aqua-cyan-bright); font-size: 1.15rem"
-                ></i>
-                Registrar Vehículo
-              </h2>
-              <p class="section-lead" style="margin-bottom: 24px">
-                Completa el formulario y guarda el vehículo para usarlo en
-                futuras reservas.
-              </p>
-
-              <form id="vehiculoForm" class="aqua-form">
-                <div class="mb-4">
-                  <label
-                    for="marca"
-                    class="form-label"
-                    style="color: var(--aqua-text-light)"
-                  >
-                    <i class="bi bi-tag"></i> Marca
-                  </label>
-                  <select
-                    class="form-control form-control-aqua aqua-input"
-                    id="marca"
-                    required
-                  >
-                    <option value="">Selecciona una marca</option>
-                  </select>
-                </div>
-
-                <div class="mb-4">
-                  <label
-                    for="modelo"
-                    class="form-label"
-                    style="color: var(--aqua-text-light)"
-                  >
-                    <i class="bi bi-speedometer2"></i> Modelo
-                  </label>
-                  <select
-                    class="form-control form-control-aqua aqua-input"
-                    id="modelo"
-                    required
-                    disabled
-                  >
-                    <option value="">Primero selecciona una marca</option>
-                  </select>
-                </div>
-
-                <div class="mb-4">
-                  <label
-                    for="tipo_vehiculo"
-                    class="form-label"
-                    style="color: var(--aqua-text-light)"
-                  >
-                    <i class="bi bi-diagram-3"></i> Tipo de vehículo
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-aqua aqua-input"
-                    id="tipo_vehiculo"
-                    placeholder="Se completa automáticamente"
-                    readonly
-                  />
-                </div>
-
-                <div class="mb-4">
-                  <label
-                    for="color"
-                    class="form-label"
-                    style="color: var(--aqua-text-light)"
-                  >
-                    <i class="bi bi-palette"></i> Color
-                  </label>
-                  <select
-                    class="form-control form-control-aqua aqua-input"
-                    id="color"
-                    required
-                  >
-                    <option value="">Selecciona un color</option>
-                  </select>
-                </div>
-
-                <div class="mb-4">
-                  <label
-                    for="patente"
-                    class="form-label"
-                    style="color: var(--aqua-text-light)"
-                  >
-                    <i class="bi bi-123"></i> Patente
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control form-control-aqua aqua-input"
-                    id="patente"
-                    placeholder="Ej: ABCD12"
-                    maxlength="6"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  class="btn-aqua aqua-btn w-100"
-                  style="padding: 12px; margin-top: 20px; font-weight: 600"
-                >
-                  <i class="bi bi-save"></i> Guardar Vehículo
-                </button>
-              </form>
-
-              <div id="mensaje" class="message" style="margin-top: 20px"></div>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="card-premium h-100">
-              <h2
-                class="section-heading"
-                style="font-size: 1.8rem; margin-bottom: 12px"
-              >
-                <i
-                  class="bi bi-stars"
-                  style="color: var(--aqua-green-water); font-size: 1.15rem"
-                ></i>
-                Todo listo para reservar
-              </h2>
-              <p class="section-lead" style="margin-bottom: 18px">
-                Mantén tus vehículos al día para que las reservas fluyan sin
-                fricción.
-              </p>
-              <div
-                class="quick-actions-grid"
-                style="grid-template-columns: 1fr; gap: 14px"
-              >
-                <div class="card-premium" style="padding: 18px">
-                  <h3
-                    style="
-                      margin-bottom: 8px;
-                      font-size: 1rem;
-                      color: var(--aqua-text-white);
-                    "
-                  >
-                    1. Registra
-                  </h3>
-                  <p style="margin: 0; color: var(--aqua-text-gray)">
-                    Agrega marca, modelo, patente, tipo y color una sola vez.
-                  </p>
-                </div>
-                <div class="card-premium" style="padding: 18px">
-                  <h3
-                    style="
-                      margin-bottom: 8px;
-                      font-size: 1rem;
-                      color: var(--aqua-text-white);
-                    "
-                  >
-                    2. Reutiliza
-                  </h3>
-                  <p style="margin: 0; color: var(--aqua-text-gray)">
-                    Usa el vehículo guardado en futuras reservas sin volver a
-                    cargarlo.
-                  </p>
-                </div>
-                <div class="card-premium" style="padding: 18px">
-                  <h3
-                    style="
-                      margin-bottom: 8px;
-                      font-size: 1rem;
-                      color: var(--aqua-text-white);
-                    "
-                  >
-                    3. Reserva
-                  </h3>
-                  <p style="margin: 0; color: var(--aqua-text-gray)">
-                    Pasa a la reserva con la información ya lista y ordenada.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LISTA DE VEHÍCULOS SECTION -->
-    <section class="page-section-bg vehiculos-list-bg section-gap-tight">
-      <div class="container-aqua">
-        <div class="hero-copy mb-4">
-          <h2 class="section-heading">Vehículos registrados</h2>
-          <p class="section-lead">
-            Una vista limpia y ordenada para revisar tu historial de vehículos
-            asociados a la cuenta.
-          </p>
-        </div>
-
-        <div id="listaVehiculos" class="row g-4" style="min-height: 300px">
-          <div class="col-12">
-            <p
-              style="
-                color: var(--aqua-text-gray);
-                text-align: center;
-                padding: 40px 20px;
-              "
-            >
-              <i class="bi bi-hourglass-split"></i> Cargando vehículos...
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="pie-pagina">
+    <footer>
       <p>
-        &copy; 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
+        © 2026 AquaCar - Lavado Premium Automotriz. Todos los derechos
         reservados.
       </p>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/navbar.js"></script>
     <script src="../js/vehiculos.js"></script>
   </body>
 </html>

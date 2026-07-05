@@ -3,175 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login AquaCar - Acceso a tu cuenta</title>
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
-    <!-- AquaCar Premium CSS -->
-    <link rel="stylesheet" href="../css/aquacar-premium.css" />
+    <title>Login AquaCar</title>
+    <link rel="stylesheet" href="../css/login.css" />
   </head>
-  <body class="page-bg auth-bg login-page">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark aqua-navbar">
-      <div class="container-aqua">
-        <a class="navbar-brand aqua-brand" href="../index.html">
-          <img
-            src="../images/logo.png"
-            alt="Logo AquaCar"
-            class="aqua-brand-logo"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#authNavbar"
-          aria-controls="authNavbar"
-          aria-expanded="false"
-          aria-label="Alternar navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="authNavbar">
-          <div class="aqua-nav-actions ms-auto">
-            <a href="./login.html" class="aqua-nav-link active"
-              >Iniciar sesión</a
-            >
-            <a href="./registro.html" class="aqua-nav-link">Registrarse</a>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Iniciar sesión</h1>
+        <p>Accede a tu cuenta en AquaCar</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" required />
           </div>
+
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" required />
+          </div>
+
+          <button type="submit">Ingresar</button>
+        </form>
+
+        <div class="message" id="mensaje"></div>
+
+        <div class="link-text">
+          ¿No tienes cuenta? <a href="./registro.html">Regístrate aquí</a>
+        </div>
+
+        <div class="link-text">
+          <a href="../index.html">Volver al inicio</a>
         </div>
       </div>
-    </nav>
-
-    <!-- LOGIN SECTION -->
-    <section
-      class="auth-stage"
-      style="
-        min-height: 90vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(
-          135deg,
-          var(--aqua-bg-darkest) 0%,
-          var(--aqua-bg-darker) 100%
-        );
-        padding: 40px 20px;
-      "
-    >
-      <div style="width: 100%; max-width: 450px">
-        <div class="form-container">
-          <div class="auth-brand">
-            <img
-              src="../images/logo.png"
-              alt="Logo AquaCar"
-              class="aqua-brand-logo"
-            />
-          </div>
-
-          <h2 class="auth-title">Iniciar sesión</h2>
-          <p class="auth-subtitle">Accede a tu cuenta premium</p>
-
-          <form id="loginForm" class="aqua-form">
-            <div class="form-group">
-              <label for="correo">
-                <i class="bi bi-envelope"></i> Correo electrónico
-              </label>
-              <input
-                type="email"
-                id="correo"
-                placeholder="tu@ejemplo.com"
-                class="aqua-input"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="contrasena">
-                <i class="bi bi-lock"></i> Contraseña
-              </label>
-              <input
-                type="password"
-                id="contrasena"
-                placeholder="••••••••"
-                class="aqua-input"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              class="btn-aqua aqua-btn"
-              style="width: 100%; margin-top: 25px; margin-bottom: 20px"
-            >
-              <i class="bi bi-box-arrow-in-right"></i> Ingresar
-            </button>
-          </form>
-
-          <div class="message" id="mensaje"></div>
-
-          <div
-            style="
-              border-top: 1px solid var(--aqua-border-subtle);
-              padding-top: 25px;
-              margin-top: 25px;
-              text-align: center;
-            "
-          >
-            <p
-              style="
-                color: var(--aqua-text-gray);
-                margin-bottom: 15px;
-                font-size: 0.95rem;
-              "
-            >
-              ¿No tienes cuenta?
-            </p>
-            <a
-              href="./registro.html"
-              style="
-                color: var(--aqua-cyan-bright);
-                text-decoration: none;
-                font-weight: 700;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                transition: all 0.3s;
-              "
-            >
-              <i class="bi bi-person-plus"></i> Crear cuenta
-            </a>
-          </div>
-
-          <div style="text-align: center; margin-top: 25px">
-            <a
-              href="../index.html"
-              style="
-                color: var(--aqua-text-muted);
-                text-decoration: none;
-                font-size: 0.9rem;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                transition: all 0.3s;
-              "
-            >
-              <i class="bi bi-arrow-left"></i> Volver al inicio
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/login.js"></script>

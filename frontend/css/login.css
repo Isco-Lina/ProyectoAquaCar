@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-dark: #030a0f;
+  --card-dark: rgba(5, 14, 20, 0.88);
+  --cyan: #00eaff;
+  --green: #00ffae;
+  --white: #ffffff;
+  --gray: #b8c0c7;
+  --border: rgba(0, 234, 255, 0.28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background:
+    linear-gradient(rgba(3, 10, 15, 0.78), rgba(3, 10, 15, 0.9)),
+    url("../images/fondos-aquacar/fondo-aquacar-4.jpeg") center / cover no-repeat;
+  color: var(--white);
+}
+
+/* NAV SUPERIOR */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  background: rgba(3, 10, 15, 0.95);
+  border-bottom: 1px solid var(--border);
+  z-index: 0;
+}
+
+.container {
+  min-height: 100vh;
+  padding: 120px 20px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* CARD LOGIN */
+.card {
+  width: 100%;
+  max-width: 470px;
+  padding: 42px;
+  background: var(--card-dark);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(0, 234, 255, 0.12);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 85px;
+  margin: 0 auto 22px;
+  background: url("../images/logo.png") center / contain no-repeat;
+}
+
+.card h1 {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.card > p {
+  text-align: center;
+  color: var(--gray);
+  margin-bottom: 26px;
+  font-size: 15px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 9px;
+  font-weight: 700;
+  color: #e9eef2;
+}
+
+.form-group input {
+  width: 100%;
+  height: 54px;
+  padding: 0 18px;
+  border-radius: 13px;
+  border: 1px solid var(--border);
+  background: rgba(1, 8, 13, 0.9);
+  color: var(--white);
+  font-size: 15px;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.12);
+}
+
+button[type="submit"] {
+  width: 100%;
+  height: 56px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 234, 255, 0.25);
+  transition: 0.25s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.message {
+  margin-top: 18px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.link-text {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.link-text:first-of-type {
+  padding-top: 26px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(0, 234, 255, 0.22);
+}
+
+.link-text a {
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.link-text a:hover {
+  text-decoration: underline;
+}
+
+.link-text:last-child a {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .container {
+    padding: 100px 16px 30px;
+  }
+
+  .card {
+    padding: 32px 24px;
+  }
+
+  .card h1 {
+    font-size: 28px;
+  }
+
+  .card::before {
+    width: 150px;
+    height: 70px;
+  }
+}

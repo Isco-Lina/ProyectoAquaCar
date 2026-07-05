@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-dark: #030a0f;
+  --card-dark: rgba(5, 14, 20, 0.9);
+  --cyan: #00eaff;
+  --green: #00ffae;
+  --white: #ffffff;
+  --gray: #b8c0c7;
+  --border: rgba(0, 234, 255, 0.28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background:
+    linear-gradient(rgba(3, 10, 15, 0.78), rgba(3, 10, 15, 0.92)),
+    url("../images/fondos-aquacar/fondo-aquacar-4.jpeg") center / cover no-repeat fixed;
+  color: var(--white);
+}
+
+/* NAV */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 78px;
+  width: 100%;
+  background: rgba(3, 10, 15, 0.96);
+  border-bottom: 1px solid var(--border);
+  z-index: 0;
+}
+
+.container {
+  min-height: 100vh;
+  padding: 90px 20px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  width: 100%;
+  max-width: 445px;
+  padding: 34px 38px 28px;
+  background: var(--card-dark);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(0, 234, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.card::before {
+  content: "";
+  display: block;
+  width: 160px;
+  height: 75px;
+  margin: 0 auto 16px;
+  background: url("../images/logo.png") center / contain no-repeat;
+}
+
+.card h1 {
+  text-align: center;
+  font-size: 29px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.card > p {
+  text-align: center;
+  color: var(--gray);
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #e9eef2;
+}
+
+.form-group input {
+  width: 100%;
+  height: 49px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(1, 8, 13, 0.92);
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.12);
+}
+
+.telefono-group,
+.phone-group,
+.input-telefono {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.telefono-group span,
+.phone-prefix,
+.prefijo {
+  height: 49px;
+  min-width: 78px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  font-weight: 800;
+  background: rgba(0, 234, 255, 0.08);
+}
+
+.telefono-group input,
+.phone-group input,
+.input-telefono input {
+  flex: 1;
+}
+
+button[type="submit"] {
+  width: 100%;
+  height: 54px;
+  margin-top: 14px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 234, 255, 0.25);
+  transition: 0.25s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.message {
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.link-text {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.link-text:first-of-type {
+  padding-top: 22px;
+  margin-top: 26px;
+  border-top: 1px solid rgba(0, 234, 255, 0.22);
+}
+
+.link-text a {
+  color: var(--cyan);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.link-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 92px 16px 28px;
+  }
+
+  .card {
+    padding: 28px 22px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+
+  .card::before {
+    width: 145px;
+    height: 65px;
+  }
+}

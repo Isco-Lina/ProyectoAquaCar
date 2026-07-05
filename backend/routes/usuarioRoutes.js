@@ -2,44 +2,60 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { verificarToken, soloAdmin } = require("../middlewares/authMiddleware");
+const {
+  validarEmail,
+  validarContrasena,
+  validarTelefonoChileno,
+  sanitizarString,
+} = require("../utils/validaciones");
 
 router.post("/usuarios", (req, res) => {
   const { nombre, apellido, correo, contrasena, telefono } = req.body;
 
-  const correoNormalizado = String(correo || "")
-    .trim()
-    .toLowerCase();
-  const telefonoNormalizado = String(telefono || "")
-    .replace(/\s|-/g, "")
-    .trim();
-  const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const regexTelefono = /^\+569\d{8}$/;
-
+  // Validar campos obligatorios
   if (!nombre || !apellido || !correo || !contrasena || !telefono) {
     return res.status(400).json({
       mensaje: "Todos los campos son obligatorios",
     });
   }
 
-  if (!regexCorreo.test(correoNormalizado)) {
+  // Validar email
+  const validacionEmail = validarEmail(correo);
+  if (!validacionEmail.valido) {
+    return res.status(400).json({ mensaje: validacionEmail.error });
+  }
+
+  // Validar contraseña
+  const validacionContrasena = validarContrasena(contrasena);
+  if (!validacionContrasena.valido) {
+    return res.status(400).json({ mensaje: validacionContrasena.error });
+  }
+
+  // Validar teléfono chileno
+  const validacionTelefono = validarTelefonoChileno(telefono);
+  if (!validacionTelefono.valido) {
+    return res.status(400).json({ mensaje: validacionTelefono.error });
+  }
+
+  // Sanitizar nombre y apellido
+  const nombreSanitizado = sanitizarString(nombre);
+  const apellidoSanitizado = sanitizarString(apellido);
+
+  if (!nombreSanitizado || !apellidoSanitizado) {
     return res.status(400).json({
-      mensaje: "El correo debe tener un formato válido",
+      mensaje: "Nombre y apellido no pueden estar vacíos",
     });
   }
 
-  if (!regexTelefono.test(telefonoNormalizado)) {
-    return res.status(400).json({
-      mensaje: "El teléfono debe tener formato chileno válido: +569XXXXXXXX",
-    });
-  }
+  const sqlVerificarCorreo = "SELECT id_usuario FROM USUARIO WHERE correo = ?";
 
-  const sqlVerificarCorreo = "SELECT * FROM USUARIO WHERE correo = ?";
-
-  db.query(sqlVerificarCorreo, [correoNormalizado], (error, results) => {
+  db.query(sqlVerificarCorreo, [correo.toLowerCase()], (error, results) => {
     if (error) {
+      console.error("Error verificar correo:", error);
       return res.status(500).json({
-        mensaje: "Error al verificar correo",
-        error: error.message,
+        mensaje: "Error interno del servidor",
       });
     }
 
@@ -49,13 +65,11 @@ router.post("/usuarios", (req, res) => {
       });
     }
 
-    const SALT_ROUNDS = 10;
-
-    bcrypt.hash(contrasena, SALT_ROUNDS, (hashError, contrasenaHash) => {
+    bcrypt.hash(contrasena, 10, (hashError, contrasenaHash) => {
       if (hashError) {
+        console.error("Error hash contraseña:", hashError);
         return res.status(500).json({
-          mensaje: "Error al proteger contraseña",
-          error: hashError.message,
+          mensaje: "Error interno del servidor",
         });
       }
 
@@ -68,17 +82,17 @@ router.post("/usuarios", (req, res) => {
         sqlInsertar,
         [
           2,
-          nombre,
-          apellido,
-          correoNormalizado,
+          nombreSanitizado,
+          apellidoSanitizado,
+          correo.toLowerCase(),
           contrasenaHash,
-          telefonoNormalizado,
+          telefono,
         ],
         (error, results) => {
           if (error) {
+            console.error("Error insertar usuario:", error);
             return res.status(500).json({
-              mensaje: "Error al registrar usuario",
-              error: error.message,
+              mensaje: "Error interno del servidor",
             });
           }
 
@@ -117,11 +131,11 @@ router.post("/login", (req, res) => {
     WHERE u.correo = ?
   `;
 
-  db.query(sql, [correo], (error, results) => {
+  db.query(sql, [correo.toLowerCase()], (error, results) => {
     if (error) {
+      console.error("Error en login:", error);
       return res.status(500).json({
-        mensaje: "Error en el login",
-        error: error.message,
+        mensaje: "Error interno del servidor",
       });
     }
 
@@ -135,9 +149,9 @@ router.post("/login", (req, res) => {
 
     bcrypt.compare(contrasena, usuario.contrasena, (compareError, coincide) => {
       if (compareError) {
+        console.error("Error bcrypt compare:", compareError);
         return res.status(500).json({
-          mensaje: "Error en el login",
-          error: compareError.message,
+          mensaje: "Error interno del servidor",
         });
       }
 
@@ -149,15 +163,29 @@ router.post("/login", (req, res) => {
 
       const { contrasena: _contrasena, ...usuarioSinContrasena } = usuario;
 
+      const token = jwt.sign(
+        {
+          id_usuario: usuario.id_usuario,
+          id_rol: usuario.id_rol,
+          rol: usuario.rol,
+          correo: usuario.correo,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: process.env.JWT_EXPIRES || "8h",
+        },
+      );
+
       res.json({
         mensaje: "Login exitoso",
         usuario: usuarioSinContrasena,
+        token,
       });
     });
   });
 });
 
-router.get("/usuarios/clientes", (req, res) => {
+router.get("/usuarios/clientes", verificarToken, soloAdmin, (req, res) => {
   const sql = `
     SELECT 
       u.id_usuario,
@@ -169,12 +197,16 @@ router.get("/usuarios/clientes", (req, res) => {
       COUNT(DISTINCT v.id_vehiculo) AS total_vehiculos,
       COUNT(DISTINCT r.id_reserva) AS total_reservas
     FROM USUARIO u
-    INNER JOIN ROL ro ON u.id_rol = ro.id_rol
     LEFT JOIN VEHICULO v ON u.id_usuario = v.id_usuario
     LEFT JOIN RESERVA r ON u.id_usuario = r.id_usuario
-    WHERE ro.nombre_rol = 'cliente'
+    WHERE u.id_rol = 2
     GROUP BY 
-      u.id_usuario, u.nombre, u.apellido, u.correo, u.telefono, u.fecha_registro
+      u.id_usuario,
+      u.nombre,
+      u.apellido,
+      u.correo,
+      u.telefono,
+      u.fecha_registro
     ORDER BY u.id_usuario DESC
   `;
 

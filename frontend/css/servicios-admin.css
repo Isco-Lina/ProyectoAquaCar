@@ -1,0 +1,439 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  --dark: #030a0f;
+  --card: rgba(9, 20, 34, 0.94);
+  --cyan: #00eaff;
+  --green: #00ffb3;
+  --yellow: #ffd15c;
+  --red: #ef473a;
+  --blue: #3d8dde;
+  --purple: #9b5cff;
+  --text: #f5f5f5;
+  --muted: #b4bbc3;
+  --border: rgba(0, 234, 255, 0.28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background:
+    linear-gradient(rgba(3, 10, 15, 0.86), rgba(3, 10, 15, 0.96)),
+    url("../images/fondos-aquacar/fondo-aquacar-7.jpeg") center / cover fixed;
+  color: var(--text);
+  font-family: "Montserrat", sans-serif;
+}
+
+.page {
+  max-width: 1220px;
+  margin: auto;
+  padding: 40px 20px 80px;
+}
+
+.hero-servicios {
+  padding: 42px 0 28px;
+}
+
+.hero-servicios h1 {
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 900;
+}
+
+.hero-servicios p {
+  color: var(--muted);
+  font-size: 18px;
+  margin-top: 14px;
+}
+
+.form-card {
+  background: rgba(3, 10, 15, 0.7);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 70px;
+  box-shadow: 0 0 35px rgba(0, 234, 255, 0.07);
+}
+
+form {
+  display: grid;
+  gap: 22px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.estado-row {
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: end;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-weight: 900;
+}
+
+.campo label::first-letter {
+  color: var(--cyan);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  background: rgba(3, 10, 15, 0.86);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  color: var(--text);
+  padding: 0 18px;
+  font: inherit;
+  outline: none;
+}
+
+.campo input,
+.campo select {
+  height: 56px;
+}
+
+.campo textarea {
+  min-height: 150px;
+  padding-top: 18px;
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.12);
+}
+
+.campo small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.imagen-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-control {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: rgba(3, 10, 15, 0.86);
+  padding: 8px 10px;
+  transition: 0.25s ease;
+}
+
+.file-control:focus-within {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.12);
+}
+
+.input-imagen {
+  width: 100%;
+  height: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  outline: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.input-imagen::file-selector-button {
+  min-height: 40px;
+  margin-right: 14px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.input-imagen::file-selector-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 234, 255, 0.18);
+}
+
+#previewImagen {
+  display: none;
+  width: 100%;
+  margin-top: 14px;
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid rgba(0, 234, 255, 0.18);
+  background: rgba(3, 10, 15, 0.85);
+}
+
+#previewImagen.visible {
+  display: block;
+}
+
+.btn-guardar,
+.btn-cancelar {
+  height: 56px;
+  border-radius: 30px;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  border: none;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  box-shadow: 0 10px 25px rgba(0, 234, 255, 0.2);
+}
+
+.btn-cancelar {
+  background: transparent;
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.message {
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.message.ok {
+  color: var(--green);
+}
+
+.message.error {
+  color: var(--red);
+}
+
+.listado-card h2 {
+  font-size: 34px;
+  margin-bottom: 34px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.servicio-card {
+  min-height: 330px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 26px rgba(0, 234, 255, 0.06);
+}
+
+.servicio-thumb {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 18px;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgba(0, 234, 255, 0.18);
+  margin-bottom: 18px;
+}
+
+.servicio-thumb-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 234, 255, 0.12), rgba(3, 10, 15, 0.92));
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.servicio-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+}
+
+.servicio-cyan::before { background: var(--cyan); }
+.servicio-green::before { background: var(--green); }
+.servicio-yellow::before { background: var(--yellow); }
+.servicio-red::before { background: var(--red); }
+.servicio-blue::before { background: var(--blue); }
+.servicio-purple::before { background: var(--purple); }
+
+.servicio-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.icono-servicio {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(0, 234, 255, 0.14);
+  border: 1px solid var(--border);
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.servicio-card h3 {
+  font-size: 22px;
+}
+
+.estado-badge {
+  height: fit-content;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.estado-activo {
+  color: var(--green);
+  background: rgba(0, 255, 179, 0.12);
+  border: 1px solid rgba(0, 255, 179, 0.55);
+}
+
+.estado-inactivo {
+  color: #ff9ca5;
+  background: rgba(239, 71, 58, 0.12);
+  border: 1px solid rgba(239, 71, 58, 0.55);
+}
+
+.descripcion {
+  color: var(--muted);
+  line-height: 1.6;
+  min-height: 76px;
+  margin-bottom: 20px;
+}
+
+.servicio-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.servicio-meta div {
+  background: rgba(3, 10, 15, 0.6);
+  border: 1px solid rgba(0, 234, 255, 0.16);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.servicio-meta small {
+  display: block;
+  color: var(--muted);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.servicio-meta strong {
+  color: var(--text);
+}
+
+.acciones-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.acciones-card button {
+  height: 44px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background: rgba(0, 234, 255, 0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 234, 255, 0.55);
+}
+
+.btn-estado {
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: #001014;
+  border: none;
+}
+
+.btn-eliminar {
+  background: rgba(239, 71, 58, 0.14);
+  color: #ff8f98;
+  border: 1px solid rgba(239, 71, 58, 0.65);
+}
+
+.sin-datos {
+  grid-column: 1 / -1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 34px;
+  text-align: center;
+}
+
+footer {
+  background: rgba(9, 20, 34, 0.98);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 38px 20px;
+  color: var(--muted);
+}
+
+@media (max-width: 1200px) {
+  .servicios-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .servicios-grid,
+  .form-row,
+  .estado-row {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .file-control {
+    padding: 10px;
+  }
+
+  .input-imagen {
+    font-size: 13px;
+  }
+
+  .input-imagen::file-selector-button {
+    width: 100%;
+    margin: 0 0 8px 0;
+  }
+}
