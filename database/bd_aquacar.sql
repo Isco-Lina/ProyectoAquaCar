@@ -1,4 +1,5 @@
-USE aquacar;
+USE railway;
+
 CREATE TABLE ROL (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL UNIQUE
@@ -59,32 +60,40 @@ CREATE TABLE RESERVA (
     hora_reserva TIME NOT NULL,
     observaciones VARCHAR(500),
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
     CONSTRAINT FK_RESERVA_USUARIO FOREIGN KEY (id_usuario)
         REFERENCES USUARIO(id_usuario)
         ON DELETE CASCADE,
+
     CONSTRAINT FK_RESERVA_VEHICULO FOREIGN KEY (id_vehiculo)
         REFERENCES VEHICULO(id_vehiculo)
         ON DELETE CASCADE,
+
     CONSTRAINT FK_RESERVA_SERVICIO FOREIGN KEY (id_servicio)
         REFERENCES SERVICIO(id_servicio),
+
     CONSTRAINT FK_RESERVA_ESTADO FOREIGN KEY (id_estado)
         REFERENCES ESTADO_RESERVA(id_estado),
+
     INDEX IDX_RESERVA_FECHA_HORA_SERVICIO (fecha_reserva, hora_reserva, id_servicio),
     INDEX IDX_RESERVA_USUARIO (id_usuario),
     INDEX IDX_RESERVA_ESTADO (id_estado)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO ROL (nombre_rol)
-VALUES
-('admin'),
-('cliente');
+SHOW TABLES;
 
-INSERT INTO ESTADO_RESERVA (nombre_estado)
-VALUES
-('Pendiente'),
-('Confirmada'),
-('Completada'),
-('Cancelada');
+INSERT INTO ROL (id_rol, nombre_rol) VALUES
+(1, 'admin'),
+(2, 'cliente');
+
+INSERT INTO ESTADO_RESERVA (id_estado, nombre_estado) VALUES
+(1, 'Pendiente'),
+(2, 'Confirmada'),
+(3, 'Completada'),
+(4, 'Cancelada');
+
+SELECT * FROM ROL;
+SELECT * FROM ESTADO_RESERVA;
 
 INSERT INTO SERVICIO
 (nombre_servicio, descripcion, duracion_minutos, precio, activo, categoria, imagen_url)
@@ -92,17 +101,30 @@ VALUES
 ('Lavado Basico', 'Lavado exterior para city car o sedan', 30, 12000, TRUE, 'sedan', '../images/catalogo/lavado-basico.png'),
 ('Lavado Full', 'Lavado interior y exterior para city car o sedan', 60, 17000, TRUE, 'sedan', '../images/catalogo/lavado-full.png'),
 ('Full + Encerado', 'Servicio completo premium con encerado para city car o sedan', 90, 40000, TRUE, 'sedan', '../images/catalogo/lavado-encerado.png'),
+
 ('Lavado Basico SUV / Camioneta', 'Lavado exterior para SUV o camioneta', 30, 12000, TRUE, 'suv', '../images/catalogo/basico-suv-camioneta.png'),
 ('Lavado Full SUV / Camioneta', 'Lavado interior y exterior para SUV o camioneta', 60, 20000, TRUE, 'suv', '../images/catalogo/full-suv-camioneta.png'),
 ('Full + Encerado SUV / Camioneta', 'Servicio completo premium con encerado para SUV o camioneta', 90, 50000, TRUE, 'suv', '../images/catalogo/encerado-suv-camioneta.png'),
+
 ('Pulido de Focos', 'Pulido y restauracion de focos', 60, 15000, TRUE, 'extra', '../images/catalogo/pulido-focos.png'),
 ('Lavado de Motor', 'Limpieza cuidadosa de motor', 60, 15000, TRUE, 'extra', '../images/catalogo/lavado-motor.png'),
 ('Lavado Moto', 'Lavado exterior para motocicleta', 30, 10000, TRUE, 'extra', '../images/catalogo/lavado-moto.png');
 
--- Usuarios de prueba.
--- Contraseñas bcrypt compatibles con el login actual.
+SELECT id_servicio, nombre_servicio, categoria, precio
+FROM SERVICIO;
+
 INSERT INTO USUARIO
 (id_rol, nombre, apellido, correo, contrasena, telefono, fecha_registro)
 VALUES
 (1, 'Administrador', 'AquaCar', 'admin@aquacar.cl', '$2b$10$pCjrCFNyS55BAMjVmAixoOme/6Q7lKdspDBMUcAC4IVdW5mtFEl7C', '999999999', NOW()),
 (2, 'Cliente', 'Prueba', 'cliente@aquacar.cl', '$2b$10$roMeoBFSHvdUcswDHN/nGuXjOAqNjiPb2L5isr/PZlA12OQ8VGCFC', '988888888', NOW());
+
+SELECT id_usuario, id_rol, nombre, apellido, correo, telefono
+FROM USUARIO;
+
+SELECT COUNT(*) AS total_roles FROM ROL;
+SELECT COUNT(*) AS total_estados FROM ESTADO_RESERVA;
+SELECT COUNT(*) AS total_servicios FROM SERVICIO;
+SELECT COUNT(*) AS total_usuarios FROM USUARIO;
+SELECT COUNT(*) AS total_vehiculos FROM VEHICULO;
+SELECT COUNT(*) AS total_reservas FROM RESERVA;
