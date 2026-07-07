@@ -1,141 +1,125 @@
 # AquaCar 2.0
 
-Sistema web para la gestión de reservas, servicios, vehículos y administración operativa de un lavado automotriz.
+AquaCar 2.0 es una aplicación web desarrollada para gestionar de forma digital un centro de lavado automotriz. Permite a los clientes registrarse, administrar sus vehículos y reservar servicios, mientras que el administrador puede controlar reservas, clientes y el catálogo de servicios desde un panel exclusivo.
 
-## Descripción
+---
 
-AquaCar 2.0 centraliza el flujo de atención del negocio en una plataforma web con frontend estático, backend REST y base de datos MySQL. El sistema permite a clientes registrar vehículos, crear reservas y revisar su historial, mientras que el administrador gestiona servicios, reservas y usuarios desde paneles protegidos.
+## Características
 
-## Tecnologías
+- Registro e inicio de sesión de usuarios.
+- Gestión de vehículos.
+- Reserva de servicios de lavado.
+- Consulta y administración de reservas.
+- Panel exclusivo para clientes.
+- Panel de administración.
+- Gestión de servicios.
+- Diseño responsive para computadores y dispositivos móviles.
+
+---
+
+## Tecnologías utilizadas
 
 ### Frontend
 
-- HTML
-- CSS
-- JavaScript vanilla
+- HTML5
+- CSS3
+- JavaScript
 
 ### Backend
 
 - Node.js
-- Express
-- JWT
-- bcryptjs
+- Express.js
 
 ### Base de datos
 
-- MySQL / MySQL2
+- MySQL
 
-### Utilidades
+### Seguridad
 
-- Visual Studio Code
-- MySQL Workbench
-- Postman
-- GitHub
+- JWT
+- bcrypt
+- Helmet
+- CORS
+- Express Rate Limit
 
-## Arquitectura
+### Despliegue
 
-La solución usa una arquitectura de tres capas:
+- Render
+- Railway
 
-1. Presentación: frontend en HTML, CSS y JavaScript.
-2. Lógica: API REST en Node.js con Express.
-3. Datos: persistencia en MySQL.
-
-La comunicación entre frontend y backend se realiza por HTTP/JSON. Las rutas privadas usan JWT y control de roles.
-
-## Funcionalidades
-
-### Cliente
-
-- Registro e inicio de sesión
-- Registro de vehículos
-- Visualización de servicios activos
-- Creación de reservas
-- Consulta de reservas propias
-- Cancelación de reservas permitidas
-
-### Administrador
-
-- Gestión de reservas
-- Cambio de estado de reservas
-- Eliminación de reservas
-- Gestión de servicios
-- Activación o desactivación de servicios
-- Visualización de clientes y vehículos
-
-## Seguridad implementada
-
-- Contraseñas cifradas con bcryptjs
-- Autenticación con JWT
-- Protección por roles en backend
-- Validación de rutas privadas con Bearer token
-- CORS con cabecera Authorization permitida
-- Rate limiting en endpoints sensibles
-- `x-powered-by` deshabilitado
+---
 
 ## Estructura del proyecto
 
+```
+AquaCar/
+│
+├── frontend/      → Interfaz de usuario
+├── backend/       → API REST
+├── database/      → Base de datos MySQL
+└── README.md
+```
+
+---
+
+## Instalación
+
+### 1. Clonar el proyecto
+
 ```bash
-/frontend   → Interfaz pública y paneles de cliente/admin
-/backend    → API REST, middleware, rutas y conexión a MySQL
-/database   → Script SQL, modelo relacional y documentación de BD
+git clone <url-del-repositorio>
 ```
 
-## Base de datos
+### 2. Instalar dependencias
 
-La carpeta `/database` incluye el script de creación y los artefactos de modelado. La base de datos contiene las tablas de roles, usuarios, vehículos, servicios, estados de reserva y reservas.
-
-## Variables de entorno
-
-Crear `backend/.env` con valores equivalentes a estos:
-
-```env
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=tu_clave_mysql
-DB_NAME=bd_aquacar_2
-PORT=3000
-FRONTEND_URL=http://127.0.0.1:5500
-JWT_SECRET=una_clave_larga_y_aleatoria
-JWT_EXPIRES=8h
-```
-
-## Instalación local
-
-### 1. Importar la base de datos
-
-Ejecutar `database/bd_aquacar.sql` en MySQL Workbench o una herramienta compatible.
-
-### 2. Configurar el backend
-
-Ubicar el archivo `.env` dentro de `backend/` con las variables necesarias.
-
-### 3. Instalar dependencias
+Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-### 4. Iniciar el backend
+Frontend
 
 ```bash
-npm start
+cd frontend
+npm install
 ```
 
-## Scripts disponibles
+### 3. Configurar variables de entorno
 
-En `backend/package.json`:
+Crear un archivo `.env` dentro de la carpeta **backend**.
 
-- `npm start` → ejecuta el servidor
-- `npm run dev` → ejecuta el servidor con nodemon
+```env
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+JWT_SECRET=
+FRONTEND_URL=
+```
 
-## Despliegue
+### 4. Ejecutar el proyecto
 
-El proyecto está preparado para separar frontend y backend en entornos distintos. Solo deben ajustarse `FRONTEND_URL`, `DB_*` y `JWT_SECRET` según el entorno de despliegue.
+Backend
 
-## Notas
+```bash
+npm run dev
+```
 
-- No se incluyen credenciales ni datos de usuarios en este documento.
-- Las credenciales de prueba deben manejarse solo en entornos locales o de QA.
-- Para producción, use una `JWT_SECRET` aleatoria y manténgala fuera del repositorio.
+Frontend
+
+Ejecutar un servidor local para la carpeta **frontend**.
+
+---
+
+## Estado del proyecto
+
+✅ Proyecto operativo y preparado para ejecutarse tanto en entorno local como en producción.
+
+---
+
+## Autor
+
+**Francisco Javier Antonio Molina Carrillo**

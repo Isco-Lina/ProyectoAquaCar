@@ -1,5 +1,3 @@
-USE railway;
-
 CREATE TABLE ROL (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL UNIQUE
@@ -116,8 +114,8 @@ FROM SERVICIO;
 INSERT INTO USUARIO
 (id_rol, nombre, apellido, correo, contrasena, telefono, fecha_registro)
 VALUES
-(1, 'Administrador', 'AquaCar', 'admin@aquacar.cl', '$2b$10$pCjrCFNyS55BAMjVmAixoOme/6Q7lKdspDBMUcAC4IVdW5mtFEl7C', '999999999', NOW()),
-(2, 'Cliente', 'Prueba', 'cliente@aquacar.cl', '$2b$10$roMeoBFSHvdUcswDHN/nGuXjOAqNjiPb2L5isr/PZlA12OQ8VGCFC', '988888888', NOW());
+(1, 'Administrador', 'AquaCar', 'admin@aquacar.cl', 'tu-contrasena', '999999999', NOW()),
+(2, 'Cliente', 'Prueba', 'cliente@aquacar.cl', 'tu-contrasena', '988888888', NOW());
 
 SELECT id_usuario, id_rol, nombre, apellido, correo, telefono
 FROM USUARIO;
