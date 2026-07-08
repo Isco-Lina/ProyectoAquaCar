@@ -97,6 +97,10 @@ body {
   outline: none;
 }
 
+.form-card .oculto {
+  display: none;
+}
+
 .form-card select:disabled {
   opacity: 0.45;
   cursor: not-allowed;
