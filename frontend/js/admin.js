@@ -345,17 +345,18 @@ async function guardarEstado(idReserva) {
       mensaje.textContent = "Estado actualizado correctamente";
 
       if (reserva && reserva.telefono) {
-        const mensajeCliente = `
-Hola ${reserva.nombre}, tu reserva en AquaCar fue actualizada.
+        const mensajeCliente = `🚗✨ Hola ${reserva.nombre}
 
-Estado: ${nuevoEstadoTexto}
-Servicio: ${reserva.nombre_servicio}
-Vehículo: ${reserva.marca} ${reserva.modelo} - ${reserva.patente}
-Fecha: ${formatearFecha(reserva.fecha_reserva)}
-Hora: ${formatearHora(reserva.hora_reserva)}
+Tu reserva en *AquaCar* fue actualizada.
 
-Gracias por preferir AquaCar.
-`;
+📌 Estado: *${nuevoEstadoTexto}*
+🧼 Servicio: ${reserva.nombre_servicio}
+🚘 Vehículo: ${reserva.marca} ${reserva.modelo} - ${reserva.patente}
+📅 Fecha: ${formatearFecha(reserva.fecha_reserva)}
+🕒 Hora: ${formatearHora(reserva.hora_reserva)}
+
+Gracias por preferir *AquaCar* 💙
+Seguimos cuidando tu vehículo como se merece.`;
 
         abrirWhatsApp(reserva.telefono, mensajeCliente);
       }

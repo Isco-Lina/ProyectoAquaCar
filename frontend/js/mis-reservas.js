@@ -181,18 +181,19 @@ async function cancelarReserva(idReserva) {
       mostrarMensaje(data.mensaje || "Reserva cancelada correctamente", true);
 
       if (reserva) {
-        const mensajeAdmin = `
-Reserva cancelada AquaCar
+        const mensajeAdmin = `😔 Hola AquaCar
 
-Cliente: ${usuario.nombre} ${usuario.apellido}
-Servicio: ${reserva.nombre_servicio}
-Vehículo: ${reserva.marca} ${reserva.modelo} - ${reserva.patente}
-Fecha: ${formatearFecha(reserva.fecha_reserva)}
-Hora: ${formatearHora(reserva.hora_reserva)}
-Observaciones: ${reserva.observaciones || "Sin observaciones"}
+Necesito cancelar mi reserva.
 
-El cliente canceló esta reserva desde su panel.
-`;
+👤 Cliente: ${usuario.nombre} ${usuario.apellido}
+🧼 Servicio: ${reserva.nombre_servicio}
+🚘 Vehículo: ${reserva.marca} ${reserva.modelo} - ${reserva.patente}
+📅 Fecha: ${formatearFecha(reserva.fecha_reserva)}
+🕒 Hora: ${formatearHora(reserva.hora_reserva)}
+📝 Observaciones: ${reserva.observaciones || "Sin observaciones"}
+
+Disculpen las molestias.
+Espero poder agendar nuevamente pronto 💙`;
 
         abrirWhatsApp("56982820443", mensajeAdmin);
       }

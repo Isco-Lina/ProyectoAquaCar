@@ -274,18 +274,19 @@ reservaForm.addEventListener("submit", async (e) => {
       const observaciones =
         document.getElementById("observaciones").value || "Sin observaciones";
 
-      const mensajeAdmin = `
-Nueva reserva AquaCar
+      const mensajeAdmin = `🚗✨ Hola AquaCar
 
-Cliente: ${usuario.nombre} ${usuario.apellido}
-Vehículo: ${vehiculoSeleccionado}
-Servicio: ${servicioSeleccionado}
-Fecha: ${fechaInput.value}
-Hora: ${horaInput.value}
-Observaciones: ${observaciones}
+Quiero solicitar una nueva reserva.
 
-Favor revisar y confirmar desde el panel administrador.
-`;
+👤 Cliente: ${usuario.nombre} ${usuario.apellido}
+🚘 Vehículo: ${vehiculoSeleccionado}
+🧼 Servicio: ${servicioSeleccionado}
+📅 Fecha: ${fechaInput.value}
+🕒 Hora: ${horaInput.value}
+📝 Observaciones: ${observaciones || "Sin observaciones"}
+
+Quedo atento(a) a la confirmación.
+¡Muchas gracias! 💙`;
       // numero administrador
       abrirWhatsApp("56982820443", mensajeAdmin);
 
