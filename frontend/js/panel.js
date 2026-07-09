@@ -67,7 +67,7 @@ function agruparServicios(servicios) {
   const gruposBase = [
     { titulo: "Sedán / City Car", clave: "sedan", servicios: [] },
     { titulo: "SUV / Camioneta", clave: "suv", servicios: [] },
-    { titulo: "Servicios exclusivos", clave: "extra", servicios: [] },
+    { titulo: "Servicios adicionales", clave: "extra", servicios: [] },
     { titulo: "Promociones y otros servicios", clave: "otros", servicios: [] },
   ];
 
